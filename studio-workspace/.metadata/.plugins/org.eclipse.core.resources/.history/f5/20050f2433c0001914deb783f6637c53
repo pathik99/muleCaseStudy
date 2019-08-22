@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="745a7f13-e242-497b-8f17-374bf4a46886" >
+		<file:connection workingDir="C:\MuleCaseStudy\inbound" />
+	</file:config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="45f5fc5a-8327-4165-9c21-9cf27f46de5f" >
+		<db:generic-connection url="jdbc:sqlserver://localhost:1433;databaseName=Employee;user=sa;password=itechtions;instanceName=SQLEXPRESS" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	</db:config>
+	<file:config name="File_Config1" doc:name="File Config" doc:id="8d5c116b-f00a-4067-a17c-521588679231" >
+		<file:connection workingDir="C:\MuleCaseStudy\inbound" />
+	</file:config>
+	<file:config name="File_Config2" doc:name="File Config" doc:id="ff4ed431-2ea4-4a5d-b3f4-3a9faa9d5daa" >
+		<file:connection workingDir="C:\MuleCaseStudy\outbound\json" />
+	</file:config>
+	<file:config name="File_Config3" doc:name="File Config" doc:id="3650dc5a-baba-4787-adaa-d6fe6d7e6272" >
+		<file:connection workingDir="C:\MuleCaseStudy\outbound\xml\" />
+	</file:config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b13a3c50-80cb-48fd-9542-02498d7b781a" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="d388ee03-cac4-44ca-9120-d1eb5624b134" file="test.yaml" />
+	<flow name="mulecasestudyFlow" doc:id="f27cf734-9044-426f-b989-ae5c5b0ace39" >
+		<file:listener doc:name="On New or Updated File" doc:id="45cf06f4-412d-41e3-8a65-ac1d94cb9c9a" config-ref="File_Config" directory="C:\MuleCaseStudy\outbound\json" moveToDirectory="C:\MuleCaseStudy\Backup" renameTo='#[((attributes.fileName splitBy("."))[0]  default "Outbound_Emp") ++ "_" ++ (now() as String{format: "yyyyMMddHHmmss" } default "") ++ ".json"]' recursive="false">
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</file:listener>
+		<db:bulk-insert doc:name="Bulk insert" doc:id="13d266a4-21e2-4ca3-a18a-e423707a1449" config-ref="Database_Config" maxRows="1000">
+			<db:bulk-input-parameters ><![CDATA[#[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	eid: payload01.eid,
+	first_name: payload01.first_name,
+	last_name: payload01.last_name,
+	company_name: payload01.company_name,
+	address: payload01.address,
+	city: payload01.city,
+	county: payload01.county,
+	state: payload01.state,
+	zip: payload01.zip,
+	phone1: payload01.phone1,
+	phone2: payload01.phone2,
+	email: payload01.email,
+	web: payload01.web
+}]]]></db:bulk-input-parameters>
+			<db:sql >INSERT INTO Employees
+VALUES (:eid, :first_name, :last_name, :company_name, :address, :city, :county, :state, :zip, :phone1, :phone2, :email, :web); </db:sql>
+		</db:bulk-insert>
+		<logger level="INFO" doc:name="Logger" doc:id="eefb5179-154e-4b58-8b26-b47634f92e65" message="#[payload]"/>
+	</flow>
+	<flow name="mulecasestudyFlow1" doc:id="f2166a4c-07ce-4229-9286-44f7960708a4" >
+		<file:listener doc:name="On New or Updated File" doc:id="d4cb388f-c8b6-4b95-9858-f6093d215fa7" config-ref="File_Config1" directory="C:\MuleCaseStudy\inbound" recursive="false" moveToDirectory="C:\MuleCaseStudy\Backup" renameTo='#[((attributes.fileName splitBy("."))[0]  default "Inbound_Employee") ++ "_" ++ (now() as String{format: "yyyyMMddHHmmss" } default "") ++ ".csv"]'>
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</file:listener>
+		<scatter-gather doc:name="Scatter-Gather" doc:id="18a86eb7-9d0b-47a5-9ea2-7a6ba49d13ef" >
+			<route >
+				<ee:transform doc:name="Transform Message" doc:id="f9ca2c36-315a-4b58-9d3a-3366f41acf1e">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	eid: payload01.eid,
+	first_name: payload01.first_name,
+	last_name: payload01.last_name,
+	company_name: payload01.company_name,
+	address: payload01.address,
+	city: payload01.city,
+	county: payload01.county,
+	state: payload01.state,
+	zip: payload01.zip as Number,
+	phone1: payload01.phone1,
+	phone2: payload01.phone2,
+	email: payload01.email,
+	web: payload01.web
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+				<file:write doc:name="Write" doc:id="0da4acc4-65e3-459f-b24d-7e8760f10d7b" config-ref="File_Config2" path='#[((attributes.fileName splitBy("."))[0]  default "Employee") ++ "_" ++ (now() as String{format: "yyyyMMddHHmmss" } default "") ++ ".json"]'/>
+				<set-payload value="JSON Completed" doc:name="Set Payload" doc:id="5174cf7d-0727-4063-a922-583813ac0ff4" />
+			</route>
+			<route >
+				<ee:transform doc:name="Transform Message" doc:id="e3fbdf02-bde5-4b55-a181-f569c1baf176" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+{
+	Employees: {
+		(payload map ( payload01 , indexOfPayload01 ) -> {
+			Employee: {
+				eid: payload01.eid,
+				first_name: payload01.first_name,
+				last_name: payload01.last_name,
+				company_name: payload01.company_name,
+				address: payload01.address,
+				city: payload01.city,
+				county: payload01.county,
+				state: payload01.state,
+				zip: payload01.zip as Number,
+				phone1: payload01.phone1,
+				phone2: payload01.phone2,
+				email: payload01.email,
+				web: payload01.web
+			}
+		})
+	}
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<file:write doc:name="Write" doc:id="dd982eeb-99ce-4db6-b4bc-b3913e5ca272" config-ref="File_Config3" path='#[((attributes.fileName splitBy("."))[0]  default "Employee") ++ "_" ++ (now() as String{format: "yyyyMMddHHmmss" } default "") ++ ".xml"]'/>
+				<set-payload value="XML Completed" doc:name="Set Payload" doc:id="68a4b97c-3cfb-473d-a17d-93fb6ad9e05d" />
+			</route>
+		</scatter-gather>
+		<logger level="INFO" doc:name="Logger" doc:id="97f032e6-87af-4c74-89ab-a63c115f05fe" message="#[payload]"/>
+	</flow>
+	<flow name="mulecasestudyFlow2" doc:id="9ea62179-2c38-436d-af4b-7d154c560aa8" >
+		<http:listener doc:name="Listener" doc:id="5c2de705-3c98-4ff5-814c-0610b35022f8" config-ref="HTTP_Listener_config" path="/all" allowedMethods="GET, POST, PUT"/>
+		<set-variable value="#[attributes.method]" doc:name="Set Variable" doc:id="b718ed94-e491-44d8-a739-37025fcf7679" variableName="method"/>
+		<set-variable value="#[attributes.queryParams.employeeid default 'non']" doc:name="Set Variable" doc:id="2dbe60b5-65aa-4bb4-86b0-b008bdcd304c" variableName="employeeid"/>
+		<choice doc:name="Choice" doc:id="9faa0d49-7170-40ae-81dc-f72ca4117fdf" >
+			<when expression="#[vars.method == 'GET' and vars.employeeid == 'non']">
+				<db:select doc:name="Select" doc:id="0e9d7d63-798e-4600-92d9-e4cad60fbecb" config-ref="Database_Config">
+			<db:sql>select * from Employees;</db:sql>
+		</db:select>
+				<set-payload value="#[%dw 2.0
+output application/json
+---
+payload]" doc:name="Set Payload" doc:id="8d44fe54-9b31-48f0-9d06-156f66357d01" mimeType="application/json" />
+			</when>
+			<when expression="#[vars.method == 'POST']">
+				<foreach doc:name="For Each" doc:id="5b4272e7-0c55-447d-ba21-2a553a42fb56" collection="payload">
+					<logger level="INFO" doc:name="pay" doc:id="464815e2-ea43-4929-a22b-f4b141128d8e" message="#[payload]"/>
+					<db:insert doc:name="Insert" doc:id="a69117be-4449-4fb9-8869-b56a4daf6b57" config-ref="Database_Config">
+					<db:sql>INSERT INTO Employees(eid, first_name, last_name, company_name, address, city, county, state, zip, phone1, phone2, email, web)
+VALUES (:eid, :first_name, :last_name, :company_name, :address, :city, :county, :state, :zip, :phone1, :phone2, :email, :web); </db:sql>
+					<db:input-parameters><![CDATA[#[{
+	eid: payload.eid,
+	first_name: payload.first_name,
+	last_name: payload.last_name,
+	company_name: payload.company_name,
+	address: payload.address,
+	city: payload.city,
+	county: payload.county,
+	state: payload.state,
+	zip: payload.zip,
+	phone1: payload.phone1,
+	phone2: payload.phone2,
+	email: payload.email,
+	web: payload.web
+}]]]></db:input-parameters>
+				</db:insert>
+				</foreach>
+				<set-payload value="#[%dw 2.0
+output application/json
+---
+payload]" doc:name="Set Payload" doc:id="281abf8c-3980-48f3-b172-c4af6f3dffcd" />
+			</when>
+			<when expression="#[vars.method == 'PUT']">
+				<foreach doc:name="For Each" doc:id="4b39135e-b280-439c-874c-5b3f70b316fd" collection="payload">
+					<db:update doc:name="Update" doc:id="79a08719-37a3-4f0b-aacc-c40d8ac7e327" config-ref="Database_Config">
+					<db:sql>UPDATE Employees SET first_name = :first_name, last_name = :last_name, company_name = :company_name, address = :address, city = :city, county = :county, state = :state, zip = :zip, phone1 = :phone1, phone2 = :phone2, email = :email, web = :web WHERE eid = :eid;</db:sql>
+					<db:input-parameters><![CDATA[#[{
+	eid: payload.eid,
+	first_name: payload.first_name,
+	last_name: payload.last_name,
+	company_name: payload.company_name,
+	address: payload.address,
+	city: payload.city,
+	county: payload.county,
+	state: payload.state,
+	zip: payload.zip,
+	phone1: payload.phone1,
+	phone2: payload.phone2,
+	email: payload.email,
+	web: payload.web
+}]]]></db:input-parameters>
+				</db:update>
+				</foreach>
+				<set-payload value="#[%dw 2.0
+output application/json
+---
+payload]" doc:name="Set Payload" doc:id="02e351cd-0cab-46df-b0fc-3e3a0ab65120" />
+			</when>
+			<when expression="#[vars.method == 'GET' and attributes.queryParams.employeeid != '']">
+				<db:select doc:name="Select" doc:id="0d89eacf-f8a3-4dbf-b0d3-9f706195711a" config-ref="Database_Config">
+					<db:sql >select * from Employees where eid = :eid;</db:sql>
+					<db:input-parameters ><![CDATA[#[{
+	eid: attributes.queryParams.employeeid
+}]]]></db:input-parameters>
+				</db:select>
+				<set-payload value="#[%dw 2.0
+output application/json
+---
+payload]" doc:name="Set Payload" doc:id="1373ead2-74b6-4e95-90ed-5524df90cb4b" />
+			</when>
+			<otherwise >
+				<set-payload value="Please choose method" doc:name="Set Payload" doc:id="598a1abf-c736-4e68-973f-dffb5ba2ea29" />
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="86377fed-b10b-4436-a4a8-9f63f1585df8" message="#[payload]"/>
+	</flow>
+	<flow name="mulecasestudyFlow3" doc:id="133b339f-a4a9-4a14-aa1d-c6a71b8b5dd3" >
+		<http:listener doc:name="Listener" doc:id="652ecf11-8b79-464b-8d09-1d96f5c9f6f4" config-ref="HTTP_Listener_config" path="/test"/>
+		<ee:transform doc:name="Transform Message" doc:id="1e1ee176-1109-471b-b8cd-640f7ad0d173" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	country : p('mytest.country1')
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

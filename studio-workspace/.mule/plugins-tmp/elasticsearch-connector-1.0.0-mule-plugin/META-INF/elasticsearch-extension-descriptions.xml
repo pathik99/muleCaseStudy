@@ -1,0 +1,1197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension-documentation>
+    <configs>
+        <config name="config">
+            <description><![CDATA[Default configuration]]></description>
+            <parameters>
+                <parameter name="expirationPolicy">
+                    <description><![CDATA[Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit.]]></description>
+                </parameter>
+            </parameters>
+        </config>
+    </configs>
+    <connections>
+        <connection name="http-connection">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="host">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="port">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="userName">
+                    <description><![CDATA[Elasticsearch instance username. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="password">
+                    <description><![CDATA[Elasticsearch instance password. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="reconnection">
+                    <description><![CDATA[When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy]]></description>
+                </parameter>
+            </parameters>
+        </connection>
+        <connection name="https-connection">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="host">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="port">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="userName">
+                    <description><![CDATA[Elasticsearch instance username. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="password">
+                    <description><![CDATA[Elasticsearch instance password. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="trustStoreType">
+                    <description><![CDATA[Type of the TrustStore]]></description>
+                </parameter>
+                <parameter name="trustStorePath">
+                    <description><![CDATA[TrustStore file path]]></description>
+                </parameter>
+                <parameter name="trustStorePassword">
+                    <description><![CDATA[Trust store password]]></description>
+                </parameter>
+                <parameter name="reconnection">
+                    <description><![CDATA[When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy]]></description>
+                </parameter>
+            </parameters>
+        </connection>
+        <connection name="http-connection">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="host">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="port">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="userName">
+                    <description><![CDATA[Elasticsearch instance username. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="password">
+                    <description><![CDATA[Elasticsearch instance password. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="reconnection">
+                    <description><![CDATA[When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy]]></description>
+                </parameter>
+            </parameters>
+        </connection>
+        <connection name="https-connection">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="host">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="port">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="userName">
+                    <description><![CDATA[Elasticsearch instance username. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="password">
+                    <description><![CDATA[Elasticsearch instance password. Keep this blank for anonymous user.]]></description>
+                </parameter>
+                <parameter name="trustStoreType">
+                    <description><![CDATA[Type of the TrustStore]]></description>
+                </parameter>
+                <parameter name="trustStorePath">
+                    <description><![CDATA[TrustStore file path]]></description>
+                </parameter>
+                <parameter name="trustStorePassword">
+                    <description><![CDATA[Trust store password]]></description>
+                </parameter>
+                <parameter name="reconnection">
+                    <description><![CDATA[When the application is deployed, a connectivity test is performed on all connectors. If set to true, deployment will fail if the test doesn't pass after exhausting the associated reconnection strategy]]></description>
+                </parameter>
+            </parameters>
+        </connection>
+    </connections>
+    <extension name="Elasticsearch">
+        <description><![CDATA[]]></description>
+        <parameters/>
+    </extension>
+    <operations>
+        <operation name="bulkOperation">
+            <description><![CDATA[Bulk operation makes it possible to perform many index, delete and update operations in a single API call.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Index name on which bulk operation Performed]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type name on which bulk operation Performed]]></description>
+                </parameter>
+                <parameter name="jsonfile">
+                    <description><![CDATA[Provide the JSON file path]]></description>
+                </parameter>
+                <parameter name="jsonText">
+                    <description><![CDATA[Provide the JSON string]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="clearScroll">
+            <description><![CDATA[The search contexts used by the Search Scroll operation are automatically deleted when the scroll times out. Clear scroll operation release search contexts as soon as they are not necessary anymore using the Clear Scroll.]]></description>
+            <parameters>
+                <parameter name="scrollId">
+                    <description><![CDATA[Scroll identifier to clear scroll]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="closeIndex">
+            <description><![CDATA[A closed index has almost no overhead. It is used to close an Index. If you want to keep your data but save resources (memory/CPU), a good alternative to deleting an index is to close them.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[The index to close]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Time to wait for the all the nodes to acknowledge if the index is closed]]></description>
+                </parameter>
+                <parameter name="masterNodeTimeout">
+                    <description><![CDATA[Timeout to connect to the master node]]></description>
+                </parameter>
+                <parameter name="indicesOpt">
+                    <description><![CDATA[IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="createIndex">
+            <description><![CDATA[The createIndex Operation allows to instantiate an index.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[The index to create]]></description>
+                </parameter>
+                <parameter name="indexSettings">
+                    <description><![CDATA[Settings for this index]]></description>
+                </parameter>
+                <parameter name="indexSettingFile">
+                    <description><![CDATA[Index Settings JSON]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[The index type to define index]]></description>
+                </parameter>
+                <parameter name="indexMapping">
+                    <description><![CDATA[The mapping for index type, provided as a JSON string]]></description>
+                </parameter>
+                <parameter name="jsonInputPath">
+                    <description><![CDATA[Path of the JSON file. The whole source including all of its sections (mappings, settings and aliases) can be provided in this json file.]]></description>
+                </parameter>
+                <parameter name="indexAlias">
+                    <description><![CDATA[The alias of the index]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Timeout to wait for the all the nodes to acknowledge the index creation]]></description>
+                </parameter>
+                <parameter name="masterNodeTimeout">
+                    <description><![CDATA[Timeout to connect to the master node]]></description>
+                </parameter>
+                <parameter name="waitForActiveShards">
+                    <description><![CDATA[The number of active shard copies to wait for before the create index]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="deleteDocument">
+            <description><![CDATA[Delete Document operation allows to delete a typed JSON document from a specific index based on its id]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Name of the index]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type of the index]]></description>
+                </parameter>
+                <parameter name="documentId">
+                    <description><![CDATA[ID of the document]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Routing is used to determine in which shard the document will reside in]]></description>
+                </parameter>
+                <parameter name="parent">
+                    <description><![CDATA[Parent value of the index request]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Time to wait for primary shard to become available]]></description>
+                </parameter>
+                <parameter name="refreshPolicy">
+                    <description><![CDATA[Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesnt force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[Version number of the indexed document]]></description>
+                </parameter>
+                <parameter name="versionType">
+                    <description><![CDATA[Version type: internal, external, external_gte]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="deleteIndex">
+            <description><![CDATA[The Delete index operation allows to delete an existing index.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[The index to delete]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Timeout to wait for the all the nodes to acknowledge the index deletion]]></description>
+                </parameter>
+                <parameter name="masterNodeTimeout">
+                    <description><![CDATA[Timeout to connect to the master node]]></description>
+                </parameter>
+                <parameter name="indicesOpts">
+                    <description><![CDATA[IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="getDocument">
+            <description><![CDATA[Get Document operation allows to get a typed JSON document from the index based on its id.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Name of the index]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type of the index]]></description>
+                </parameter>
+                <parameter name="documentId">
+                    <description><![CDATA[ID of the document]]></description>
+                </parameter>
+                <parameter name="fetchSourceContext">
+                    <description><![CDATA[Enable or disable source retrieval]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Routing is used to determine in which shard the document will reside in]]></description>
+                </parameter>
+                <parameter name="parent">
+                    <description><![CDATA[Parent value of the index request]]></description>
+                </parameter>
+                <parameter name="preference">
+                    <description><![CDATA[Preference value]]></description>
+                </parameter>
+                <parameter name="realtime">
+                    <description><![CDATA[Set realtime flag]]></description>
+                </parameter>
+                <parameter name="refresh">
+                    <description><![CDATA[Perform a refresh before retrieving the document]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[Version number of the indexed document]]></description>
+                </parameter>
+                <parameter name="versionType">
+                    <description><![CDATA[Version type: internal, external, external_gte,]]></description>
+                </parameter>
+                <parameter name="outputMimeType">
+                    <description><![CDATA[The mime type of the payload that this operation outputs.]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="indexDocument">
+            <description><![CDATA[Index Document operation adds or updates a typed JSON document in a specific index, making it searchable.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Name of the index]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type of the index]]></description>
+                </parameter>
+                <parameter name="documentId">
+                    <description><![CDATA[ID of the document]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Routing is used to determine in which shard the document will reside in]]></description>
+                </parameter>
+                <parameter name="parent">
+                    <description><![CDATA[A parent-child relationship can be established between documents in the same index by making one mapping type the parent of another]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Timeout to wait for primary shard to become available]]></description>
+                </parameter>
+                <parameter name="refreshPolicy">
+                    <description><![CDATA[Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesnt force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[Version number of the indexed document. It will control the version of the document the operation is intended to be executed against.]]></description>
+                </parameter>
+                <parameter name="versionType">
+                    <description><![CDATA[Version type: internal, external, external_gte]]></description>
+                </parameter>
+                <parameter name="operationType">
+                    <description><![CDATA[Type of the operation. When create type is used, the index operation will fail if a document by that id already exists in the index.]]></description>
+                </parameter>
+                <parameter name="pipeline">
+                    <description><![CDATA[Name of the ingest pipeline to be executed before indexing the document]]></description>
+                </parameter>
+                <parameter name="jsonInputPath">
+                    <description><![CDATA[Provide the JSON file path]]></description>
+                </parameter>
+                <parameter name="documentSource">
+                    <description><![CDATA[Provide the Document source]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="info">
+            <description><![CDATA[To retrieve the cluster information.]]></description>
+            <parameters>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="openIndex">
+            <description><![CDATA[Open Index operation allow to open an index.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[The index to open]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Timeout to wait for the all the nodes to acknowledge the index is opened. It is the time to wait for an open index to become available to elasticsearch.]]></description>
+                </parameter>
+                <parameter name="masterNodeTimeout">
+                    <description><![CDATA[Timeout to connect to the master node]]></description>
+                </parameter>
+                <parameter name="waitForActiveShards">
+                    <description><![CDATA[The number of active shard copies to wait for]]></description>
+                </parameter>
+                <parameter name="indicesOpts">
+                    <description><![CDATA[IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="search">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="queryConfiguration">
+                    <description><![CDATA[Different types of Elasticsearch query query configuration]]></description>
+                </parameter>
+                <parameter name="searchSourceConfiguration">
+                    <description><![CDATA[Search source configuration to control the search behavior.]]></description>
+                </parameter>
+                <parameter name="index">
+                    <description><![CDATA[Restricts the search request to an index]]></description>
+                </parameter>
+                <parameter name="searchType">
+                    <description><![CDATA[The type of the search operation to perform]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Limits the search request to a type]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Search the document using routing]]></description>
+                </parameter>
+                <parameter name="scrollIntervalTime">
+                    <description><![CDATA[Scroll interval time keep the search context alive(minutes). If value is non-zero, scroll search is initiated.]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="searchScroll">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="scrollId">
+                    <description><![CDATA[Scroll identifier returned in last scroll request]]></description>
+                </parameter>
+                <parameter name="timeValue">
+                    <description><![CDATA[Set the scroll interval time keep the search context alive(minutes)]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="searchUsingJsonData">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Restricts the search request to an index]]></description>
+                </parameter>
+                <parameter name="outputMimeType">
+                    <description><![CDATA[The mime type of the payload that this operation outputs.]]></description>
+                </parameter>
+                <parameter name="jsonfile">
+                    <description><![CDATA[Provide the JSON file path]]></description>
+                </parameter>
+                <parameter name="jsonText">
+                    <description><![CDATA[Provide the JSON string]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="updateDocument">
+            <description><![CDATA[Update Document operation allows to update a document based on a script provided.]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Name of the index]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type of the index]]></description>
+                </parameter>
+                <parameter name="documentId">
+                    <description><![CDATA[ID of the document]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Routing is used to determine in which shard the document will reside in]]></description>
+                </parameter>
+                <parameter name="parent">
+                    <description><![CDATA[Parent value of the index request]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Time to wait for primary shard to become available]]></description>
+                </parameter>
+                <parameter name="refreshPolicy">
+                    <description><![CDATA[Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesnt force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.]]></description>
+                </parameter>
+                <parameter name="retryOnConflict">
+                    <description><![CDATA[How many times to retry the update operation if the document to update has been changed by another operation between the get and indexing phases of the update operation]]></description>
+                </parameter>
+                <parameter name="fetchSource">
+                    <description><![CDATA[Enable or disable source retrieval]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[Version number of the indexed document]]></description>
+                </parameter>
+                <parameter name="detectNoop">
+                    <description><![CDATA[Enable or disable the noop detection]]></description>
+                </parameter>
+                <parameter name="scriptedUpsert">
+                    <description><![CDATA[Indicate that the script must run regardless of whether the document exists or not]]></description>
+                </parameter>
+                <parameter name="docAsUpsert">
+                    <description><![CDATA[Indicate that the partial document must be used as the upsert document if it does not exist yet.]]></description>
+                </parameter>
+                <parameter name="jsonInputPath">
+                    <description><![CDATA[Provide the JSON file path]]></description>
+                </parameter>
+                <parameter name="documentSource">
+                    <description><![CDATA[Provide the Document source]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+                <parameter name="reconnectionStrategy">
+                    <description><![CDATA[A retry strategy in case of connectivity errors]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="getSearchRequest">
+            <description><![CDATA[SearchRequest Builder]]></description>
+            <parameters>
+                <parameter name="searchRequestConfig">
+                    <description><![CDATA[Search Request configuration parameters]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="getSearchSourceBuilderOptions">
+            <description><![CDATA[Create and returns the search source builder]]></description>
+            <parameters>
+                <parameter name="searchSourceConfig">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+    </operations>
+    <sources/>
+    <types>
+        <type name="org.apache.http.StatusLine">
+            <description><![CDATA[]]></description>
+            <parameters/>
+        </type>
+        <type name="org.elasticsearch.action.admin.indices.close.CloseIndexResponse">
+            <description><![CDATA[]]></description>
+            <parameters/>
+        </type>
+        <type name="org.elasticsearch.action.admin.indices.create.CreateIndexResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="shardsAcked">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="shardsAcknowledged">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse">
+            <description><![CDATA[]]></description>
+            <parameters/>
+        </type>
+        <type name="org.elasticsearch.action.admin.indices.open.OpenIndexResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="shardsAcknowledged">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.delete.DeleteResponse">
+            <description><![CDATA[]]></description>
+            <parameters/>
+        </type>
+        <type name="org.elasticsearch.action.index.IndexResponse">
+            <description><![CDATA[]]></description>
+            <parameters/>
+        </type>
+        <type name="org.elasticsearch.action.main.MainResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="available">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="build">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="clusterName">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="clusterUuid">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="nodeName">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.search.ClearScrollResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="numFreed">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="succeeded">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.search.SearchRequest">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="batchedReduceSize">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="maxConcurrentShardRequests">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="maxConcurrentShardRequestsSet">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="preFilterShardSize">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="suggestOnly">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.search.SearchResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="aggregations">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="clusters">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="failedShards">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="hits">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="numReducePhases">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="profileResults">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="scrollId">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="shardFailures">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="skippedShards">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="successfulShards">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="suggest">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="terminatedEarly">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="timedOut">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="took">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="totalShards">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.action.update.UpdateResponse">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="getResult">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.client.Response">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="entity">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="header">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="headers">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="host">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="httpResponse">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="requestLine">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="statusLine">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.elasticsearch.search.builder.SearchSourceBuilder">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="suggestOnly">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.api.DocumentFetchSourceOptions">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="fetchSource">
+                    <description><![CDATA[Fetch the source of the search document]]></description>
+                </parameter>
+                <parameter name="includeFields">
+                    <description><![CDATA[List of the field that are included into the document source]]></description>
+                </parameter>
+                <parameter name="excludeFields">
+                    <description><![CDATA[List of the field that are excluded from the document source]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.api.IndexOptions">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="ignoreUnavailable">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="allowNoIndices">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="expandToOpenIndices">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="expandToClosedIndices">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="allowAliasesToMultipleIndices">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="forbidClosedIndices">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="ignoreAliases">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.api.SearchRequestConfiguration">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.
+ 
+         Search request configuration parameters]]></description>
+            <parameters>
+                <parameter name="index">
+                    <description><![CDATA[Restricts the search request to an index]]></description>
+                </parameter>
+                <parameter name="searchType">
+                    <description><![CDATA[The type of the search operation to perform]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Limits the search request to a type]]></description>
+                </parameter>
+                <parameter name="routing">
+                    <description><![CDATA[Search the document using routing]]></description>
+                </parameter>
+                <parameter name="scrollIntervalTime">
+                    <description><![CDATA[Scroll interval time keep the search context alive(minutes). If value is non-zero, scroll search is initiated.]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.api.SearchSourceConfiguration">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.
+ 
+         Search source request configuration parameters]]></description>
+            <parameters>
+                <parameter name="from">
+                    <description><![CDATA[Retrieve search result from a certain offset]]></description>
+                </parameter>
+                <parameter name="size">
+                    <description><![CDATA[The number of search hits to return]]></description>
+                </parameter>
+                <parameter name="timeout">
+                    <description><![CDATA[Time allowed to finish the search operation]]></description>
+                </parameter>
+                <parameter name="sortOrder">
+                    <description><![CDATA[The sort order of search result using default field (_score).]]></description>
+                </parameter>
+                <parameter name="sortByFieldName">
+                    <description><![CDATA[Field name to sort the search result]]></description>
+                </parameter>
+                <parameter name="fetchSource">
+                    <description><![CDATA[Fetch the source of the search document]]></description>
+                </parameter>
+                <parameter name="includeFields">
+                    <description><![CDATA[List of the field that are included into the document source]]></description>
+                </parameter>
+                <parameter name="excludeFields">
+                    <description><![CDATA[List of the field that are excluded from the document source]]></description>
+                </parameter>
+                <parameter name="profile">
+                    <description><![CDATA[Enable the profiling to the execution of search queries]]></description>
+                </parameter>
+                <parameter name="explain">
+                    <description><![CDATA[Explain the execution of search queries]]></description>
+                </parameter>
+                <parameter name="terminateAfter">
+                    <description><![CDATA[The maximum number of documents to collect for each shard]]></description>
+                </parameter>
+                <parameter name="trackScores">
+                    <description><![CDATA[Enable the search source tracking]]></description>
+                </parameter>
+                <parameter name="trackTotalHits">
+                    <description><![CDATA[Enable the total hits tracking]]></description>
+                </parameter>
+                <parameter name="version">
+                    <description><![CDATA[Returns a version for each search hit.]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.CommonTermsQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="fieldName">
+                    <description><![CDATA[Restrict the search request to field]]></description>
+                </parameter>
+                <parameter name="queryString">
+                    <description><![CDATA[Search text string]]></description>
+                </parameter>
+                <parameter name="analyzer">
+                    <description><![CDATA[The analyzer name used to analyze the query string]]></description>
+                </parameter>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+                <parameter name="cutoffFrequency">
+                    <description><![CDATA[Specify an absolute or relative document frequency]]></description>
+                </parameter>
+                <parameter name="highFreqMinimumShouldMatch">
+                    <description><![CDATA[Set minimum should match with possible value using integer and percentage.]]></description>
+                </parameter>
+                <parameter name="highFreqOperator">
+                    <description><![CDATA[High frequency query operator]]></description>
+                </parameter>
+                <parameter name="lowFreqMinimumShouldMatch">
+                    <description><![CDATA[Set minimum should match with possible value using integer and percentage.
+ 
+ @see <a href="http://google.com">Minimum Should Matchedit</a>]]></description>
+                </parameter>
+                <parameter name="lowFreqOperator">
+                    <description><![CDATA[Low frequency query operator]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.MatchAllQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.MatchPhrasePrefixQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="field">
+                    <description><![CDATA[Restrict the search request to field]]></description>
+                </parameter>
+                <parameter name="queryString">
+                    <description><![CDATA[Search text string]]></description>
+                </parameter>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+                <parameter name="analyzer">
+                    <description><![CDATA[The analyzer name used to analyze the query string]]></description>
+                </parameter>
+                <parameter name="maxExpansions">
+                    <description><![CDATA[Number of suffixes the last term will be expanded]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.MatchPhraseQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="field">
+                    <description><![CDATA[Restrict the search request to field]]></description>
+                </parameter>
+                <parameter name="queryString">
+                    <description><![CDATA[Search text string]]></description>
+                </parameter>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+                <parameter name="analyzer">
+                    <description><![CDATA[The analyzer name used to analyze the query string]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.MatchQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="searchString">
+                    <description><![CDATA[Search text string]]></description>
+                </parameter>
+                <parameter name="fuzziness">
+                    <description><![CDATA[Enable fuzzy matching on the match query]]></description>
+                </parameter>
+                <parameter name="fuzzyTranspositions">
+                    <description><![CDATA[Allow the fuzzy transpositions match]]></description>
+                </parameter>
+                <parameter name="prefixLength">
+                    <description><![CDATA[Prefix length option on the match query]]></description>
+                </parameter>
+                <parameter name="maxExpansions">
+                    <description><![CDATA[Max expansion to control the fuzzy process of the query]]></description>
+                </parameter>
+                <parameter name="operator">
+                    <description><![CDATA[Set the match query operator]]></description>
+                </parameter>
+                <parameter name="lenient">
+                    <description><![CDATA[Ignore exceptions caused by data-type mismatches]]></description>
+                </parameter>
+                <parameter name="zeroTermsQuery">
+                    <description><![CDATA[Set the zero terms query option]]></description>
+                </parameter>
+                <parameter name="cutoffFrequency">
+                    <description><![CDATA[Specify an absolute or relative document frequency]]></description>
+                </parameter>
+                <parameter name="autoGenerateSynonymsPhraseQuery">
+                    <description><![CDATA[Enable the auto generate synonyms phrase]]></description>
+                </parameter>
+                <parameter name="field">
+                    <description><![CDATA[Restrict the search request to field]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.MultiMatchQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="searchString">
+                    <description><![CDATA[Search text string]]></description>
+                </parameter>
+                <parameter name="fuzziness">
+                    <description><![CDATA[Enable fuzzy matching on the match query]]></description>
+                </parameter>
+                <parameter name="fuzzyTranspositions">
+                    <description><![CDATA[Allow the fuzzy transpositions match]]></description>
+                </parameter>
+                <parameter name="prefixLength">
+                    <description><![CDATA[Prefix length option on the match query]]></description>
+                </parameter>
+                <parameter name="maxExpansions">
+                    <description><![CDATA[Max expansion to control the fuzzy process of the query]]></description>
+                </parameter>
+                <parameter name="operator">
+                    <description><![CDATA[Set the match query operator]]></description>
+                </parameter>
+                <parameter name="lenient">
+                    <description><![CDATA[Ignore exceptions caused by data-type mismatches]]></description>
+                </parameter>
+                <parameter name="zeroTermsQuery">
+                    <description><![CDATA[Set the zero terms query option]]></description>
+                </parameter>
+                <parameter name="cutoffFrequency">
+                    <description><![CDATA[Specify an absolute or relative document frequency]]></description>
+                </parameter>
+                <parameter name="autoGenerateSynonymsPhraseQuery">
+                    <description><![CDATA[Enable the auto generate synonyms phrase]]></description>
+                </parameter>
+                <parameter name="fields">
+                    <description><![CDATA[Restrict the search request to list of field]]></description>
+                </parameter>
+                <parameter name="type">
+                    <description><![CDATA[Type of the multi match query is executed internally]]></description>
+                </parameter>
+                <parameter name="tieBreaker">
+                    <description><![CDATA[The tie breaker parameter used to select field in a group of field based on score
+ 
+ 0.0 - Take the single best score out of multiple field
+ 
+ 1.0 - Add together the scores of the multiple field
+ 
+ 0.0 < n < 1.0 - Take the single best score plus tie_breaker multiplied by each of the scores from other matching fields.]]></description>
+                </parameter>
+                <parameter name="minimumShouldMatch">
+                    <description><![CDATA[Set minimum should match with possible value using integer and percentage.]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.Query">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.
+ 
+         Base query class implemented by all elastic search query types]]></description>
+            <parameters/>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.QueryStringQuery">
+            <description><![CDATA[@author Great Software Laboratory Pvt. Ltd.]]></description>
+            <parameters>
+                <parameter name="queryString">
+                    <description><![CDATA[The actual query to be parsed]]></description>
+                </parameter>
+                <parameter name="fieldAndBoost">
+                    <description><![CDATA[List of the field name and associated field boost]]></description>
+                </parameter>
+                <parameter name="analyzer">
+                    <description><![CDATA[The analyzer name used to analyze the query string]]></description>
+                </parameter>
+                <parameter name="analyzeWildcard">
+                    <description><![CDATA[Analyze the wildcards terms from the query string]]></description>
+                </parameter>
+                <parameter name="autoGenerateSynonymsPhraseQuery">
+                    <description><![CDATA[Enable auto generated synonyms phrase queries]]></description>
+                </parameter>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+                <parameter name="defaultOperator">
+                    <description><![CDATA[The default operator used if no explicit query operator is specified]]></description>
+                </parameter>
+                <parameter name="fuzzyMaxExpansions">
+                    <description><![CDATA[Controls the number of terms fuzzy queries will expand to.]]></description>
+                </parameter>
+                <parameter name="fuzzyPrefixLength">
+                    <description><![CDATA[Set the prefix length for fuzzy queries]]></description>
+                </parameter>
+                <parameter name="fuzzyTranspositions">
+                    <description><![CDATA[Set to false to disable fuzzy transpositions]]></description>
+                </parameter>
+                <parameter name="lenient">
+                    <description><![CDATA[If set to true will cause format based failures (like providing text to a numeric field) to be ignored.]]></description>
+                </parameter>
+                <parameter name="minimumShouldMatch">
+                    <description><![CDATA[Set minimum should match with possible value using integer and percentage.]]></description>
+                </parameter>
+                <parameter name="quoteFieldSuffix">
+                    <description><![CDATA[A suffix to append to fields for quoted parts of the query string.]]></description>
+                </parameter>
+                <parameter name="allowLeadingWildcard">
+                    <description><![CDATA[Allow first wildcard (* or ?) in query string]]></description>
+                </parameter>
+                <parameter name="defaultField">
+                    <description><![CDATA[The default field for query terms if no prefix field is specified.]]></description>
+                </parameter>
+                <parameter name="enablePositionIncrements">
+                    <description><![CDATA[Set to true to enable position increments in result queries.]]></description>
+                </parameter>
+                <parameter name="escape">
+                    <description><![CDATA[Allow escape in query string]]></description>
+                </parameter>
+                <parameter name="phraseSlop">
+                    <description><![CDATA[Sets the default slop for phrases. If zero, then exact phrase matches are required.]]></description>
+                </parameter>
+                <parameter name="tieBreaker">
+                    <description><![CDATA[The disjunction max tie breaker for multi fields]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.extension.elastic.internal.querytype.SimpleQueryString">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="queryString">
+                    <description><![CDATA[The actual query to be parsed]]></description>
+                </parameter>
+                <parameter name="fieldAndBoost">
+                    <description><![CDATA[List of the field name and associated field boost]]></description>
+                </parameter>
+                <parameter name="analyzer">
+                    <description><![CDATA[The analyzer name used to analyze the query string]]></description>
+                </parameter>
+                <parameter name="analyzeWildcard">
+                    <description><![CDATA[Analyze the wildcards terms from the query string]]></description>
+                </parameter>
+                <parameter name="autoGenerateSynonymsPhraseQuery">
+                    <description><![CDATA[Enable auto generated synonyms phrase queries]]></description>
+                </parameter>
+                <parameter name="boost">
+                    <description><![CDATA[Sets the boost value of the query]]></description>
+                </parameter>
+                <parameter name="defaultOperator">
+                    <description><![CDATA[The default operator used if no explicit query operator is specified]]></description>
+                </parameter>
+                <parameter name="fuzzyMaxExpansions">
+                    <description><![CDATA[Controls the number of terms fuzzy queries will expand to.]]></description>
+                </parameter>
+                <parameter name="fuzzyPrefixLength">
+                    <description><![CDATA[Set the prefix length for fuzzy queries]]></description>
+                </parameter>
+                <parameter name="fuzzyTranspositions">
+                    <description><![CDATA[Set to false to disable fuzzy transpositions]]></description>
+                </parameter>
+                <parameter name="lenient">
+                    <description><![CDATA[If set to true will cause format based failures (like providing text to a numeric field) to be ignored.]]></description>
+                </parameter>
+                <parameter name="minimumShouldMatch">
+                    <description><![CDATA[Set minimum should match with possible value using integer and percentage.]]></description>
+                </parameter>
+                <parameter name="quoteFieldSuffix">
+                    <description><![CDATA[A suffix to append to fields for quoted parts of the query string.]]></description>
+                </parameter>
+                <parameter name="simpleQueryStringFlag">
+                    <description><![CDATA[Specify which parsing flag should be enabled]]></description>
+                </parameter>
+            </parameters>
+        </type>
+    </types>
+</extension-documentation>

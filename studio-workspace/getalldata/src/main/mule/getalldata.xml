@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7d3fde82-cd96-47af-942e-449c81a15d9a" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="getAllDataFlow" doc:id="023cb16c-3825-490a-8290-1ee33c0f380e" >
+		<http:listener doc:name="Listener" doc:id="ada7eb38-f092-40ea-97ca-29777544a60e" config-ref="HTTP_Listener_config" path="/gsearch"/>
+		<set-variable value="#[attributes.queryParams.searchname]" doc:name="userSearch" doc:id="f3305403-8912-4b81-8be2-a996754e8e91" variableName="uSearch"/>
+		<set-variable value="#[attributes.queryParams.nearby]" doc:name="userNearby" doc:id="12701403-b037-427a-8be8-83c7f9c272a5" variableName="nearbyy"/>
+		<flow-ref doc:name="PlaceLocation" doc:id="af994171-7aa5-4708-b41c-56cec5c624cd" name="getPlaceSearchFlow"/>
+		<scatter-gather doc:name="Scatter-Gather" doc:id="0b55fbdc-834f-40d3-b5b6-d793a1fd9857" >
+			<route >
+				<flow-ref doc:name="PlaceSearch" doc:id="139f7405-1f6e-4839-94f4-46bff63405a7" name="getPlaceSearchFlow" />
+			</route>
+			<route >
+				<flow-ref doc:name="WeatherData" doc:id="72a9b7d9-17c9-44a2-a16e-1defbd1a1348" name="getWeatherData"/>
+			</route>
+			<route >
+				<flow-ref doc:name="YoutubeData" doc:id="075120ac-4c7a-4b37-87ba-a15b9ba19d2c" name="getYoutubeData" />
+			</route>
+			<route >
+				<flow-ref doc:name="NearbyData" doc:id="ae7822ef-25b4-48c0-83da-be8a0c74f8ee" name="getNearbyFlow" />
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Transform Message" doc:id="f04ef485-51aa-4b81-8e75-a3a7ab825750" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="b07cb21f-7a9a-48ca-814d-d87a63527df9" />
+	</flow>
+	<flow name="getYoutubeData" doc:id="070ca122-eda8-41d6-8576-17ee24456669" >
+		<http:request method="GET" doc:name="Request" doc:id="dd4631c6-92fd-4bc2-ae5c-c09f67c609d6" url="https://www.googleapis.com/youtube/v3/search">
+			<http:query-params><![CDATA[#[output application/java
+---
+{
+	"part" : "snippet",
+	"q" : vars.uSearch,
+	"key" : "AIzaSyDZzH0krNr8FM7DNGsycXQbQIHEMYzSElc"
+}]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="6593ddc4-70d9-432d-9797-309d61f5a5d1" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+payload
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="3b914fbd-5aac-49da-ab64-db579659afb9" />
+	</flow>
+	<flow name="getPlaceSearchFlow" doc:id="e2d5a9de-e387-4932-bcac-0f567f0db0a3" >
+		<http:request method="GET" doc:name="Request" doc:id="1b5a1ee8-3ab7-4dbb-a97b-166196411ca3" url="https://maps.googleapis.com/maps/api/place/textsearch/json">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"query" : vars.uSearch,
+	"key" : "AIzaSyDZzH0krNr8FM7DNGsycXQbQIHEMYzSElc"
+}]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="f8ab74f9-c41b-443d-9b46-6d48a2e358d3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+---
+{
+	name: payload.results.name[0],
+	latitude: payload.results.geometry.location.lat[0] as Number,
+	longitude: payload.results.geometry.location.lng[0] as Number,
+	Info: payload
+}]]></ee:set-payload>
+			</ee:message>
+			<ee:variables />
+		</ee:transform>
+		<set-variable value="#[payload.latitude default '']" doc:name="Set Variable" doc:id="10fd09df-7c4b-4fe3-a91c-ea6bc6ce4763" variableName="latitude"/>
+		<set-variable value="#[payload.longitude default '']" doc:name="Set Variable" doc:id="25ab3811-29c9-47a0-9bd6-63001ab92453" variableName="longitude"/>
+		<logger level="INFO" doc:name="Logger" doc:id="936f0c02-800d-4368-8e68-206f396f8517" message="#[vars.lati default '']"/>
+	</flow>
+	<flow name="getNearbyFlow" doc:id="f6c7193a-547d-4bf7-9031-9a8ca1c6943a" >
+		<http:request method="GET" doc:name="Request" doc:id="50e7abcf-fc77-43be-8308-f01737589042" url="https://maps.googleapis.com/maps/api/place/nearbysearch/json">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"location" : (vars.latitude default "") ++ "," ++ (vars.longitude default ""),
+	"radius" : "1500",
+	"type" : vars.nearbyy default "",
+	"key" : "AIzaSyDZzH0krNr8FM7DNGsycXQbQIHEMYzSElc"
+}]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="81e1d9e0-89b6-4df1-b2e8-78ec41295f9f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="c73e473e-760e-4332-ada4-b97cce39db4d" />
+	</flow>
+	<flow name="getWeatherData" doc:id="356026f3-2ec8-4b9b-970b-2752922a5507" >
+		<http:request method="GET" doc:name="Request" doc:id="745ee2bc-0f0c-4d96-845a-6d4b835c3320" url="https://community-open-weather-map.p.rapidapi.com/weather">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"X-RapidAPI-Key" : "48050f69bemshcc5b0c3d3a54a25p17134cjsn2ed73fe10a64"
+}]]]></http:headers>
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"lon" : vars.longitude default "",
+	"lat" : vars.latitude default ""
+}]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="90d9e66e-abb8-4697-a742-68839cf1cc2f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="8c4bd01b-7372-4e10-9f17-22b7461b1a55" />
+	</flow>
+</mule>

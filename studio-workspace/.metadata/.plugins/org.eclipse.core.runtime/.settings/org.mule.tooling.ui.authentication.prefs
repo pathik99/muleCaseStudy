@@ -1,0 +1,5 @@
+authenticated.users=[{"id"\:"ea7647b7-0147-4ef7-b261-2460b297eff2","token"\:"94505bee-7f34-431b-96d1-96f3114f8305","userId"\:"pathik89","refreshToken"\:"","baseUrl"\:"https\://anypoint.mulesoft.com/"},{"id"\:"0cb8ed27-5e0f-42d2-8da5-128dae3cb3e2","token"\:"23051ba2-ae5d-4950-940a-3e7264042465","userId"\:"pathik99","refreshToken"\:"","baseUrl"\:"https\://anypoint.mulesoft.com/"}]
+current.token=23051ba2-ae5d-4950-940a-3e7264042465
+current.user=pathik99
+eclipse.preferences.version=1
+org.mule.tooling.amc.apps={"userProjectMap"\:{"pathik99"\:{"muletest1"\:"{\\"applicationName\\"\:\\"training4-american-ws-gandhi\\",\\"muleRuntime\\"\:\\"4.1.4\\",\\"properties\\"\:{}}"}}}

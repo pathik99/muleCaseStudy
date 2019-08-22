@@ -1,0 +1,1681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:mule="http://www.mulesoft.org/schema/mule/core" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mulesoft.org/schema/mule/elasticsearch" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace"></xs:import>
+  <xs:import namespace="http://www.springframework.org/schema/beans" schemaLocation="http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"></xs:import>
+  <xs:import namespace="http://www.mulesoft.org/schema/mule/core" schemaLocation="http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></xs:import>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.Query">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractExtensionType"></xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.Query" substitutionGroup="mule:abstract-shared-extension" abstract="true" name="global-abstract-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.Query" abstract="true" name="abstract-query"></xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.MatchQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="field"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="searchString"></xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="fuzziness"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="fuzzyTranspositions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="0" name="prefixLength"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="50" name="maxExpansions"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseMatchQuery.QueryOperatorEnumType" use="optional" name="operator"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="lenient"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseMatchQuery.ZeroTermQueryEnumType" use="optional" name="zeroTermsQuery"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0.0" name="cutoffFrequency"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="autoGenerateSynonymsPhraseQuery"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-match-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-match-query" name="match-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.MultiMatchQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="field">
+                  <xs:complexType>
+                    <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionList" use="optional" name="fields"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.MultiMatchQuery.MultiMatchQueryTypeEnumType" use="optional" name="type"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0.0" name="tieBreaker"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="minimumShouldMatch"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="searchString"></xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="fuzziness"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="fuzzyTranspositions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="0" name="prefixLength"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="50" name="maxExpansions"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseMatchQuery.QueryOperatorEnumType" use="optional" name="operator"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="lenient"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseMatchQuery.ZeroTermQueryEnumType" use="optional" name="zeroTermsQuery"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0.0" name="cutoffFrequency"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="autoGenerateSynonymsPhraseQuery"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.MultiMatchQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-multi-match-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-multi-match-query" name="multi-match-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.MultiMatchQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.MatchAllQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="1.0" name="boost"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchAllQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-match-all-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-match-all-query" name="match-all-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchAllQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.MatchPhraseQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="field"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="queryString"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="1.0" name="boost"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="analyzer"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchPhraseQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-match-phrase-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-match-phrase-query" name="match-phrase-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchPhraseQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.MatchPhrasePrefixQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="50" name="maxExpansions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="field"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="queryString"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="1.0" name="boost"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="analyzer"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchPhrasePrefixQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-match-phrase-prefix-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-match-phrase-prefix-query" name="match-phrase-prefix-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.MatchPhrasePrefixQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.CommonTermsQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="fieldName"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="queryString"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="analyzer"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0" name="boost"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0.0" name="cutoffFrequency"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="highFreqMinimumShouldMatch"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.CommonTermsQuery.QueryOperatorEnumType" use="optional" name="highFreqOperator"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="lowFreqMinimumShouldMatch"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.CommonTermsQuery.QueryOperatorEnumType" use="optional" name="lowFreqOperator"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.CommonTermsQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-common-terms-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-common-terms-query" name="common-terms-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.CommonTermsQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.QueryStringQuery">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="field-and-boosts">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="field-and-boost">
+                  <xs:complexType>
+                    <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="allowLeadingWildcard"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="defaultField"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="enablePositionIncrements"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="escape"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="0" name="phraseSlop"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="0" name="tieBreaker"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="queryString"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionMap" use="optional" name="fieldAndBoost"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="analyzer"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="analyzeWildcard"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="autoGenerateSynonymsPhraseQuery"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="1.0" name="boost"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseQueryString.QueryOperatorEnumType" use="optional" name="defaultOperator"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="50" name="fuzzyMaxExpansions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="0" name="fuzzyPrefixLength"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="fuzzyTranspositions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="lenient"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="minimumShouldMatch"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="quoteFieldSuffix"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.QueryStringQuery" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-query-string-query"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-query-string-query" name="query-string-query">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.QueryStringQuery"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="org.mule.extension.elastic.internal.querytype.SimpleQueryString">
+    <xs:complexContent>
+      <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.internal.querytype.Query">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="field-and-boosts">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="field-and-boost">
+                  <xs:complexType>
+                    <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.SimpleQueryString.SimpleQueryFlagEnumType" use="optional" name="simpleQueryStringFlag"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="required" name="queryString"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionMap" use="optional" name="fieldAndBoost"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="analyzer"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="analyzeWildcard"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="autoGenerateSynonymsPhraseQuery"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionDecimal" use="optional" default="1.0" name="boost"></xs:attribute>
+        <xs:attribute type="elasticsearch:org.mule.extension.elastic.internal.querytype.BaseQueryString.QueryOperatorEnumType" use="optional" name="defaultOperator"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="50" name="fuzzyMaxExpansions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionInt" use="optional" default="0" name="fuzzyPrefixLength"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="true" name="fuzzyTranspositions"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionBoolean" use="optional" default="false" name="lenient"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="minimumShouldMatch"></xs:attribute>
+        <xs:attribute xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="mule:expressionString" use="optional" name="quoteFieldSuffix"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" type="elasticsearch:org.mule.extension.elastic.internal.querytype.SimpleQueryString" substitutionGroup="elasticsearch:abstract-query" abstract="true" name="abstract-simple-query-string"></xs:element>
+  <xs:element xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" substitutionGroup="elasticsearch:abstract-simple-query-string" name="simple-query-string">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="elasticsearch:org.mule.extension.elastic.internal.querytype.SimpleQueryString"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" substitutionGroup="mule:abstract-shared-extension" name="config">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mule:abstractExtensionType">
+          <xs:annotation>
+            <xs:documentation>Default configuration</xs:documentation>
+          </xs:annotation>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" ref="mule:abstractConnectionProvider"></xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" ref="mule:expiration-policy"></xs:element>
+          </xs:sequence>
+          <xs:attribute type="xs:string" use="required" name="name"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" substitutionGroup="mule:abstractConnectionProvider" name="http-connection">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mule:abstractConnectionProviderType">
+          <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" ref="mule:reconnection"></xs:element>
+          </xs:sequence>
+          <xs:attribute type="mule:expressionString" use="required" name="host"></xs:attribute>
+          <xs:attribute type="mule:expressionInt" use="optional" default="9200" name="port"></xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="userName">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance username. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="password">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance password. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" substitutionGroup="mule:abstractConnectionProvider" name="https-connection">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mule:abstractConnectionProviderType">
+          <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" ref="mule:reconnection"></xs:element>
+          </xs:sequence>
+          <xs:attribute type="mule:expressionString" use="required" name="host"></xs:attribute>
+          <xs:attribute type="mule:expressionInt" use="optional" default="9200" name="port"></xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="userName">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance username. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="password">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance password. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" default="jks" name="trustStoreType">
+            <xs:annotation>
+              <xs:documentation>Type of the TrustStore</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="required" name="trustStorePath">
+            <xs:annotation>
+              <xs:documentation>TrustStore file path</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="required" name="trustStorePassword">
+            <xs:annotation>
+              <xs:documentation>Trust store password</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="BulkOperationType" substitutionGroup="mule:abstract-operator" name="bulk-operation">
+    <xs:annotation>
+      <xs:documentation>Bulk operation makes it possible to perform many index, delete and update operations in a single API call.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BulkOperationType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="json-text">
+            <xs:annotation>
+              <xs:documentation>Provide the JSON string</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="index">
+          <xs:annotation>
+            <xs:documentation>Index name on which bulk operation Performed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="type">
+          <xs:annotation>
+            <xs:documentation>Type name on which bulk operation Performed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="jsonfile">
+          <xs:annotation>
+            <xs:documentation>Provide the JSON file path</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="ClearScrollType" substitutionGroup="mule:abstract-operator" name="clear-scroll">
+    <xs:annotation>
+      <xs:documentation>The search contexts used by the Search Scroll operation are automatically deleted when the scroll times out. Clear scroll operation release search contexts as soon as they are not necessary anymore using the Clear Scroll.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ClearScrollType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="scrollId">
+          <xs:annotation>
+            <xs:documentation>Scroll identifier to clear scroll</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="CloseIndexType" substitutionGroup="mule:abstract-operator" name="close-index">
+    <xs:annotation>
+      <xs:documentation>A closed index has almost no overhead. It is used to close an Index. If you want to keep your data but save resources (memory/CPU), a good alternative to deleting an index is to close them.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CloseIndexType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="indices-opt">
+            <xs:annotation>
+              <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.IndexOptions"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>The index to close</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Time to wait for the all the nodes to acknowledge if the index is closed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="masterNodeTimeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to connect to the master node</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="indicesOpt">
+          <xs:annotation>
+            <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="org.mule.extension.elastic.api.IndexOptions">
+    <xs:annotation>
+      <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractExtensionType">
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="ignoreUnavailable"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="allowNoIndices"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="expandToOpenIndices"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="expandToClosedIndices"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="allowAliasesToMultipleIndices"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="forbidClosedIndices"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="ignoreAliases"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="CreateIndexType" substitutionGroup="mule:abstract-operator" name="create-index">
+    <xs:annotation>
+      <xs:documentation>The createIndex Operation allows to instantiate an index.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CreateIndexType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="index-settings">
+            <xs:annotation>
+              <xs:documentation>Settings for this index</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="index-setting">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="index-mappings">
+            <xs:annotation>
+              <xs:documentation>The mapping for index type, provided as a JSON string</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="index-mapping">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute type="xs:string" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>The index to create</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionMap" use="optional" name="indexSettings">
+          <xs:annotation>
+            <xs:documentation>Settings for this index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="indexSettingFile">
+          <xs:annotation>
+            <xs:documentation>Index Settings JSON</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="type">
+          <xs:annotation>
+            <xs:documentation>The index type to define index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionMap" use="optional" name="indexMapping">
+          <xs:annotation>
+            <xs:documentation>The mapping for index type, provided as a JSON string</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="jsonInputPath">
+          <xs:annotation>
+            <xs:documentation>Path of the JSON file. The whole source including all of its sections (mappings, settings and aliases) can be provided in this json file.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="indexAlias">
+          <xs:annotation>
+            <xs:documentation>The alias of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to wait for the all the nodes to acknowledge the index creation</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="masterNodeTimeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to connect to the master node</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="waitForActiveShards">
+          <xs:annotation>
+            <xs:documentation>The number of active shard copies to wait for before the create index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="DeleteDocumentType" substitutionGroup="mule:abstract-operator" name="delete-document">
+    <xs:annotation>
+      <xs:documentation>Delete Document operation allows to delete a typed JSON document from a specific index based on its id</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DeleteDocumentType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>Name of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="type">
+          <xs:annotation>
+            <xs:documentation>Type of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="documentId">
+          <xs:annotation>
+            <xs:documentation>ID of the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing">
+          <xs:annotation>
+            <xs:documentation>Routing is used to determine in which shard the document will reside in</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="parent">
+          <xs:annotation>
+            <xs:documentation>Parent value of the index request</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Time to wait for primary shard to become available</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.action.support.WriteRequest.RefreshPolicyEnumType" use="optional" name="refreshPolicy">
+          <xs:annotation>
+            <xs:documentation>Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesn?t force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionLong" use="optional" default="0" name="version">
+          <xs:annotation>
+            <xs:documentation>Version number of the indexed document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.index.VersionTypeEnumType" use="optional" name="versionType">
+          <xs:annotation>
+            <xs:documentation>Version type: internal, external, external_gte</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="DeleteIndexType" substitutionGroup="mule:abstract-operator" name="delete-index">
+    <xs:annotation>
+      <xs:documentation>The Delete index operation allows to delete an existing index.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DeleteIndexType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="indices-opts">
+            <xs:annotation>
+              <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.IndexOptions"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>The index to delete</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to wait for the all the nodes to acknowledge the index deletion</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="masterNodeTimeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to connect to the master node</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="indicesOpts">
+          <xs:annotation>
+            <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="GetDocumentType" substitutionGroup="mule:abstract-operator" name="get-document">
+    <xs:annotation>
+      <xs:documentation>Get Document operation allows to get a typed JSON document from the index based on its id.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="GetDocumentType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="fetch-source-context">
+            <xs:annotation>
+              <xs:documentation>Enable or disable source retrieval</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.DocumentFetchSourceOptions"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>Name of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="type">
+          <xs:annotation>
+            <xs:documentation>Type of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="documentId">
+          <xs:annotation>
+            <xs:documentation>ID of the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="fetchSourceContext">
+          <xs:annotation>
+            <xs:documentation>Enable or disable source retrieval</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing">
+          <xs:annotation>
+            <xs:documentation>Routing is used to determine in which shard the document will reside in</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="parent">
+          <xs:annotation>
+            <xs:documentation>Parent value of the index request</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="preference">
+          <xs:annotation>
+            <xs:documentation>Preference value</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="true" name="realtime">
+          <xs:annotation>
+            <xs:documentation>Set realtime flag</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="refresh">
+          <xs:annotation>
+            <xs:documentation>Perform a refresh before retrieving the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionLong" use="optional" default="0" name="version">
+          <xs:annotation>
+            <xs:documentation>Version number of the indexed document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.index.VersionTypeEnumType" use="optional" name="versionType">
+          <xs:annotation>
+            <xs:documentation>Version type: internal, external, external_gte,</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="outputMimeType">
+          <xs:annotation>
+            <xs:documentation>The mime type of the payload that this operation outputs.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="org.mule.extension.elastic.api.DocumentFetchSourceOptions">
+    <xs:annotation>
+      <xs:documentation>Enable or disable source retrieval</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractExtensionType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="include-fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="include-field">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="exclude-fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="exclude-field">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="true" name="fetchSource"></xs:attribute>
+        <xs:attribute type="mule:expressionList" use="optional" name="includeFields"></xs:attribute>
+        <xs:attribute type="mule:expressionList" use="optional" name="excludeFields"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="IndexDocumentType" substitutionGroup="mule:abstract-operator" name="index-document">
+    <xs:annotation>
+      <xs:documentation>Index Document operation adds or updates a typed JSON document in a specific index, making it searchable.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="IndexDocumentType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="document-sources">
+            <xs:annotation>
+              <xs:documentation>Provide the Document source</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="document-source">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute type="xs:string" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>Name of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="type">
+          <xs:annotation>
+            <xs:documentation>Type of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="documentId">
+          <xs:annotation>
+            <xs:documentation>ID of the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing">
+          <xs:annotation>
+            <xs:documentation>Routing is used to determine in which shard the document will reside in</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="parent">
+          <xs:annotation>
+            <xs:documentation>A parent-child relationship can be established between documents in the same index by making one mapping type the parent of another</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to wait for primary shard to become available</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.action.support.WriteRequest.RefreshPolicyEnumType" use="optional" name="refreshPolicy">
+          <xs:annotation>
+            <xs:documentation>Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesn?t force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionLong" use="optional" default="0" name="version">
+          <xs:annotation>
+            <xs:documentation>Version number of the indexed document. It will control the version of the document the operation is intended to be executed against.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.index.VersionTypeEnumType" use="optional" name="versionType">
+          <xs:annotation>
+            <xs:documentation>Version type: internal, external, external_gte</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.action.DocWriteRequest.OpTypeEnumType" use="optional" name="operationType">
+          <xs:annotation>
+            <xs:documentation>Type of the operation. When create type is used, the index operation will fail if a document by that id already exists in the index.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="pipeline">
+          <xs:annotation>
+            <xs:documentation>Name of the ingest pipeline to be executed before indexing the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="jsonInputPath">
+          <xs:annotation>
+            <xs:documentation>Provide the JSON file path</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionMap" use="optional" name="documentSource">
+          <xs:annotation>
+            <xs:documentation>Provide the Document source</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="InfoType" substitutionGroup="mule:abstract-operator" name="info">
+    <xs:annotation>
+      <xs:documentation>To retrieve the cluster information.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="InfoType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="OpenIndexType" substitutionGroup="mule:abstract-operator" name="open-index">
+    <xs:annotation>
+      <xs:documentation>Open Index operation allow to open an index.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="OpenIndexType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="indices-opts">
+            <xs:annotation>
+              <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.IndexOptions"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>The index to open</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to wait for the all the nodes to acknowledge the index is opened. It is the time to wait for an open index to become available to elasticsearch.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="masterNodeTimeout">
+          <xs:annotation>
+            <xs:documentation>Timeout to connect to the master node</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="waitForActiveShards">
+          <xs:annotation>
+            <xs:documentation>The number of active shard copies to wait for</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="indicesOpts">
+          <xs:annotation>
+            <xs:documentation>IndicesOptions controls how unavailable indices are resolved and how wildcard expressions are expanded</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="SearchType" substitutionGroup="mule:abstract-operator" name="search"></xs:element>
+  <xs:complexType name="SearchType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="search-source-configuration">
+            <xs:annotation>
+              <xs:documentation>Search source configuration to control the search behavior.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.SearchSourceConfiguration"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="required" name="queryConfiguration">
+          <xs:annotation>
+            <xs:documentation>Different types of Elasticsearch query query configuration</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="searchSourceConfiguration">
+          <xs:annotation>
+            <xs:documentation>Search source configuration to control the search behavior.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="index">
+          <xs:annotation>
+            <xs:documentation>Restricts the search request to an index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.mule.extension.elastic.api.SearchRequestConfiguration.SearchTypeEnumType" use="optional" name="searchType">
+          <xs:annotation>
+            <xs:documentation>The type of the search operation to perform</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="type">
+          <xs:annotation>
+            <xs:documentation>Limits the search request to a type</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing">
+          <xs:annotation>
+            <xs:documentation>Search the document using routing</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="scrollIntervalTime">
+          <xs:annotation>
+            <xs:documentation>Scroll interval time keep the search context alive(minutes). If value is non-zero, scroll search is initiated.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="org.mule.extension.elastic.api.SearchSourceConfiguration">
+    <xs:annotation>
+      <xs:documentation>Search source configuration to control the search behavior.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractExtensionType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="include-fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="include-field">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="exclude-fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="exclude-field">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="from"></xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="10" name="size"></xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" name="timeout"></xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.mule.extension.elastic.api.SearchSourceConfiguration.SortOrderEnumType" use="optional" name="sortOrder"></xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="sortByFieldName"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="true" name="fetchSource"></xs:attribute>
+        <xs:attribute type="mule:expressionList" use="optional" name="includeFields"></xs:attribute>
+        <xs:attribute type="mule:expressionList" use="optional" name="excludeFields"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="profile"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="explain"></xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" name="terminateAfter"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="trackScores"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="trackTotalHits"></xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="version"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="SearchScrollType" substitutionGroup="mule:abstract-operator" name="search-scroll"></xs:element>
+  <xs:complexType name="SearchScrollType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="scrollId">
+          <xs:annotation>
+            <xs:documentation>Scroll identifier returned in last scroll request</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionLong" use="required" name="timeValue">
+          <xs:annotation>
+            <xs:documentation>Set the scroll interval time keep the search context alive(minutes)</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="SearchUsingJsonDataType" substitutionGroup="mule:abstract-operator" name="search-using-json-data"></xs:element>
+  <xs:complexType name="SearchUsingJsonDataType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="json-text">
+            <xs:annotation>
+              <xs:documentation>Provide the JSON string</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="index">
+          <xs:annotation>
+            <xs:documentation>Restricts the search request to an index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="outputMimeType">
+          <xs:annotation>
+            <xs:documentation>The mime type of the payload that this operation outputs.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="jsonfile">
+          <xs:annotation>
+            <xs:documentation>Provide the JSON file path</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="UpdateDocumentType" substitutionGroup="mule:abstract-operator" name="update-document">
+    <xs:annotation>
+      <xs:documentation>Update Document operation allows to update a document based on a script provided.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="UpdateDocumentType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" ref="mule:abstract-reconnection-strategy"></xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="document-sources">
+            <xs:annotation>
+              <xs:documentation>Provide the Document source</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="document-source">
+                  <xs:complexType>
+                    <xs:attribute type="mule:expressionString" use="required" name="key"></xs:attribute>
+                    <xs:attribute type="xs:string" use="required" name="value"></xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="mule:substitutableName" use="required" name="config-ref">
+          <xs:annotation>
+            <xs:documentation>Specify which configuration to use for this invocation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="index">
+          <xs:annotation>
+            <xs:documentation>Name of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="type">
+          <xs:annotation>
+            <xs:documentation>Type of the index</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="required" name="documentId">
+          <xs:annotation>
+            <xs:documentation>ID of the document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing">
+          <xs:annotation>
+            <xs:documentation>Routing is used to determine in which shard the document will reside in</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="parent">
+          <xs:annotation>
+            <xs:documentation>Parent value of the index request</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="timeout">
+          <xs:annotation>
+            <xs:documentation>Time to wait for primary shard to become available</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.elasticsearch.action.support.WriteRequest.RefreshPolicyEnumType" use="optional" name="refreshPolicy">
+          <xs:annotation>
+            <xs:documentation>Refresh policy is used to control when changes made by the requests are made visible to search. Option for refresh policy A) true : Refresh the relevant primary and replica shards (not the whole index) immediately after the operation occurs, so that the updated document appears in search results immediately. B) wait_for : Wait for the changes made by the request to be made visible by a refresh before replying. This doesn?t force an immediate refresh, rather, it waits for a refresh to happen. C) false (default) : Take no refresh related actions. The changes made by this request will be made visible at some point after the request returns.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="retryOnConflict">
+          <xs:annotation>
+            <xs:documentation>How many times to retry the update operation if the document to update has been changed by another operation between the get and indexing phases of the update operation</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="fetchSource">
+          <xs:annotation>
+            <xs:documentation>Enable or disable source retrieval</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionLong" use="optional" default="0" name="version">
+          <xs:annotation>
+            <xs:documentation>Version number of the indexed document</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="true" name="detectNoop">
+          <xs:annotation>
+            <xs:documentation>Enable or disable the noop detection</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="scriptedUpsert">
+          <xs:annotation>
+            <xs:documentation>Indicate that the script must run regardless of whether the document exists or not</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionBoolean" use="optional" default="false" name="docAsUpsert">
+          <xs:annotation>
+            <xs:documentation>Indicate that the partial document must be used as the upsert document if it does not exist yet.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="jsonInputPath">
+          <xs:annotation>
+            <xs:documentation>Provide the JSON file path</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionMap" use="optional" name="documentSource">
+          <xs:annotation>
+            <xs:documentation>Provide the Document source</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" substitutionGroup="mule:abstractConnectionProvider" name="http-connection">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mule:abstractConnectionProviderType">
+          <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" ref="mule:reconnection"></xs:element>
+          </xs:sequence>
+          <xs:attribute type="mule:expressionString" use="required" name="host"></xs:attribute>
+          <xs:attribute type="mule:expressionInt" use="optional" default="9200" name="port"></xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="userName">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance username. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="password">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance password. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:mule="http://www.mulesoft.org/schema/mule/core" substitutionGroup="mule:abstractConnectionProvider" name="https-connection">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="mule:abstractConnectionProviderType">
+          <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" ref="mule:reconnection"></xs:element>
+          </xs:sequence>
+          <xs:attribute type="mule:expressionString" use="required" name="host"></xs:attribute>
+          <xs:attribute type="mule:expressionInt" use="optional" default="9200" name="port"></xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="userName">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance username. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" name="password">
+            <xs:annotation>
+              <xs:documentation>Elasticsearch instance password. Keep this blank for anonymous user.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="optional" default="jks" name="trustStoreType">
+            <xs:annotation>
+              <xs:documentation>Type of the TrustStore</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="required" name="trustStorePath">
+            <xs:annotation>
+              <xs:documentation>TrustStore file path</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute type="mule:expressionString" use="required" name="trustStorePassword">
+            <xs:annotation>
+              <xs:documentation>Trust store password</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="GetSearchRequestType" substitutionGroup="mule:abstract-operator" name="get-search-request">
+    <xs:annotation>
+      <xs:documentation>SearchRequest Builder</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="GetSearchRequestType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="search-request-config">
+            <xs:annotation>
+              <xs:documentation>Search Request configuration parameters</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.SearchRequestConfiguration"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:string" use="optional" name="searchRequestConfig">
+          <xs:annotation>
+            <xs:documentation>Search Request configuration parameters</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="org.mule.extension.elastic.api.SearchRequestConfiguration">
+    <xs:annotation>
+      <xs:documentation>Search Request configuration parameters</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractExtensionType">
+        <xs:attribute type="mule:expressionString" use="optional" name="index"></xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" type="org.mule.extension.elastic.api.SearchRequestConfiguration.SearchTypeEnumType" use="optional" name="searchType"></xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="type"></xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" name="routing"></xs:attribute>
+        <xs:attribute type="mule:expressionInt" use="optional" default="0" name="scrollIntervalTime"></xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns="http://www.mulesoft.org/schema/mule/elasticsearch" xmlns:mule="http://www.mulesoft.org/schema/mule/core" type="GetSearchSourceBuilderOptionsType" substitutionGroup="mule:abstract-operator" name="get-search-source-builder-options">
+    <xs:annotation>
+      <xs:documentation>Create and returns the search source builder</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="GetSearchSourceBuilderOptionsType">
+    <xs:complexContent>
+      <xs:extension xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:abstractOperatorType">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element minOccurs="0" maxOccurs="1" name="search-source-config">
+            <xs:complexType>
+              <xs:complexContent>
+                <xs:extension xmlns:elasticsearch="http://www.mulesoft.org/schema/mule/elasticsearch" base="elasticsearch:org.mule.extension.elastic.api.SearchSourceConfiguration"></xs:extension>
+              </xs:complexContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:string" use="optional" name="searchSourceConfig"></xs:attribute>
+        <xs:attribute type="xs:string" use="optional" name="target">
+          <xs:annotation>
+            <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute type="mule:expressionString" use="optional" default="#[payload]" name="targetValue">
+          <xs:annotation>
+            <xs:documentation>An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.BaseMatchQuery.QueryOperatorEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OR"></xs:enumeration>
+          <xs:enumeration value="AND"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.BaseMatchQuery.ZeroTermQueryEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ALL"></xs:enumeration>
+          <xs:enumeration value="NONE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.MultiMatchQuery.MultiMatchQueryTypeEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="BEST_FIELDS"></xs:enumeration>
+          <xs:enumeration value="CROSS_FIELDS"></xs:enumeration>
+          <xs:enumeration value="MOST_FIELDS"></xs:enumeration>
+          <xs:enumeration value="PHRASE"></xs:enumeration>
+          <xs:enumeration value="PHRASE_PREFIX"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.CommonTermsQuery.QueryOperatorEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OR"></xs:enumeration>
+          <xs:enumeration value="AND"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.BaseQueryString.QueryOperatorEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OR"></xs:enumeration>
+          <xs:enumeration value="AND"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.internal.querytype.SimpleQueryString.SimpleQueryFlagEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ALL"></xs:enumeration>
+          <xs:enumeration value="AND"></xs:enumeration>
+          <xs:enumeration value="ESCAPE"></xs:enumeration>
+          <xs:enumeration value="FUZZY"></xs:enumeration>
+          <xs:enumeration value="NEAR"></xs:enumeration>
+          <xs:enumeration value="NONE"></xs:enumeration>
+          <xs:enumeration value="NOT"></xs:enumeration>
+          <xs:enumeration value="OR"></xs:enumeration>
+          <xs:enumeration value="PHRASE"></xs:enumeration>
+          <xs:enumeration value="PRECEDENCE"></xs:enumeration>
+          <xs:enumeration value="PREFIX"></xs:enumeration>
+          <xs:enumeration value="SLOP"></xs:enumeration>
+          <xs:enumeration value="WHITESPACE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.elasticsearch.action.support.WriteRequest.RefreshPolicyEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NONE"></xs:enumeration>
+          <xs:enumeration value="IMMEDIATE"></xs:enumeration>
+          <xs:enumeration value="WAIT_UNTIL"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.elasticsearch.index.VersionTypeEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="INTERNAL"></xs:enumeration>
+          <xs:enumeration value="EXTERNAL"></xs:enumeration>
+          <xs:enumeration value="EXTERNAL_GTE"></xs:enumeration>
+          <xs:enumeration value="FORCE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.elasticsearch.action.DocWriteRequest.OpTypeEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="INDEX"></xs:enumeration>
+          <xs:enumeration value="CREATE"></xs:enumeration>
+          <xs:enumeration value="UPDATE"></xs:enumeration>
+          <xs:enumeration value="DELETE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.api.SearchSourceConfiguration.SortOrderEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ASC"></xs:enumeration>
+          <xs:enumeration value="DESC"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="org.mule.extension.elastic.api.SearchRequestConfiguration.SearchTypeEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DEFAULT"></xs:enumeration>
+          <xs:enumeration value="DFS_QUERY_THEN_FETCH"></xs:enumeration>
+          <xs:enumeration value="QUERY_THEN_FETCH"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+</xs:schema>

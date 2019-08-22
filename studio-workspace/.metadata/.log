@@ -1,0 +1,1229 @@
+!SESSION 2019-08-14 08:27:50.713 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_211
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+This is a continuation of log file C:\Users\HP\AnypointStudio\studio-workspace\.metadata\.bak_0.log
+Created Time: 2019-08-14 09:32:29.615
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-14 09:32:29.615
+!MESSAGE  *** 7588 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.eclipse.jface 2 0 2019-08-14 09:35:24.269
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-14 09:35:24.269
+!MESSAGE A conflict occurred for CTRL+Z:
+Binding(CTRL+Z,
+	ParameterizedCommand(Command(org.eclipse.debug.ui.commands.eof,EOF,
+		Send end of file,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5a170a6b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.console,,win32,system)
+Binding(CTRL+Z,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.undo,Undo,
+		Undo the last operation,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7c7b0f5d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+Z,
+	ParameterizedCommand(Command(org.mule.tooling.ui.dfl.contribution.commands.undoCommand,Undo Mapping Command,
+		Undo Mapping Command,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5a65140d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+
+!ENTRY org.eclipse.ui 4 0 2019-08-14 09:35:26.831
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1361)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.allMatch(ReferencePipeline.java:454)
+	at org.mule.tooling.ui.widgets.errors.ErrorManager.areAll(ErrorManager.java:117)
+	at org.mule.tooling.ui.dfl.contribution.editor.action.errors.WeaveErrorDisplay.getErrorDisplayImage(WeaveErrorDisplay.java:21)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay.onIssues(ErrorDisplay.java:79)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay$2.run(ErrorDisplay.java:54)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.eclipse.ui 4 0 2019-08-14 09:39:50.916
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1361)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.allMatch(ReferencePipeline.java:454)
+	at org.mule.tooling.ui.widgets.errors.ErrorManager.areAll(ErrorManager.java:117)
+	at org.mule.tooling.ui.dfl.contribution.editor.action.errors.WeaveErrorDisplay.getErrorDisplayImage(WeaveErrorDisplay.java:21)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay.onIssues(ErrorDisplay.java:79)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay$2.run(ErrorDisplay.java:54)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.eclipse.ui 4 0 2019-08-14 09:40:14.887
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1361)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.allMatch(ReferencePipeline.java:454)
+	at org.mule.tooling.ui.widgets.errors.ErrorManager.areAll(ErrorManager.java:117)
+	at org.mule.tooling.ui.dfl.contribution.editor.action.errors.WeaveErrorDisplay.getErrorDisplayImage(WeaveErrorDisplay.java:21)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay.onIssues(ErrorDisplay.java:79)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay$2.run(ErrorDisplay.java:54)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-15 09:05:23.808
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jface 2 0 2019-08-16 10:27:22.875
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-16 10:27:22.876
+!MESSAGE A conflict occurred for CTRL+SHIFT+I:
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.commands.Inspect,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1b05d022,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.mule.tooling.ui.dfl.contribution.commands.inputSearchCommand,Input Search,
+		Input Search,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3319ad76,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.raml.commands.extractToFile,Extract to included file,
+		Extract a piece of code into another file,
+		Category(org.raml.commands.category,RAML editor category,Commands related to the RAML plugin,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@58ccb6ec,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.raml.editor.RAMLScope,,,system)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-16 10:30:18.784
+!MESSAGE  *** 49773 EmbeddedMavenRunner [configuration=DefaultMavenRunnerConfiguration [externalInstallation=false, mavenInstallationHome=null, mavenOpts=]]
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:30:19.006
+!MESSAGE Number of server definitions: 1
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:30:19.040
+!MESSAGE Metadata was not read from C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-9hefgjab
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:30:35.405
+!MESSAGE Creating tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:30:35.420
+!MESSAGE Copying mule instance as tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:31:39.931
+!MESSAGE Tooling path: C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-hjzkxzqx
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:31:39.932
+!MESSAGE Tooling version: 4.1.4
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:31:39.933
+!MESSAGE Starting tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:31:39.934
+!MESSAGE Tooling startup timeout: 90s
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-16 10:32:39.454
+!MESSAGE  *** 10648 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-16 10:33:12.414
+!MESSAGE Error preparing tooling instance
+!STACK 0
+org.mule.tooling.runtime.controller.MuleControllerException: Timeout while starting mule instance
+	at org.mule.tooling.runtime.controller.MuleController.start(MuleController.java:150)
+	at org.mule.tooling.client.startup.ToolingManager.setup(ToolingManager.java:305)
+	at org.mule.tooling.client.startup.ToolingManager.getToolingInstance(ToolingManager.java:138)
+	at org.mule.tooling.ui.modules.core.metadata.DataSenseJob.run(DataSenseJob.java:80)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: org.awaitility.core.ConditionTimeoutException: Condition with lambda expression in org.mule.tooling.runtime.controller.MuleController was not fulfilled within 90 seconds.
+	at org.awaitility.core.ConditionAwaiter.await(ConditionAwaiter.java:104)
+	at org.awaitility.core.CallableCondition.await(CallableCondition.java:79)
+	at org.awaitility.core.CallableCondition.await(CallableCondition.java:27)
+	at org.awaitility.core.ConditionFactory.until(ConditionFactory.java:809)
+	at org.awaitility.core.ConditionFactory.until(ConditionFactory.java:785)
+	at org.mule.tooling.runtime.controller.MuleController.start(MuleController.java:134)
+	... 4 more
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-16 10:33:12.544
+!MESSAGE Error while resolving data sense
+!STACK 0
+org.mule.tooling.client.startup.ToolingNotAvailableException: Tooling instance could not be started, another attempt will be made
+	at org.mule.tooling.client.startup.ToolingManager.setup(ToolingManager.java:313)
+	at org.mule.tooling.client.startup.ToolingManager.getToolingInstance(ToolingManager.java:138)
+	at org.mule.tooling.ui.modules.core.metadata.DataSenseJob.run(DataSenseJob.java:80)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: org.mule.tooling.runtime.controller.MuleControllerException: Timeout while starting mule instance
+	at org.mule.tooling.runtime.controller.MuleController.start(MuleController.java:150)
+	at org.mule.tooling.client.startup.ToolingManager.setup(ToolingManager.java:305)
+	... 3 more
+Caused by: org.awaitility.core.ConditionTimeoutException: Condition with lambda expression in org.mule.tooling.runtime.controller.MuleController was not fulfilled within 90 seconds.
+	at org.awaitility.core.ConditionAwaiter.await(ConditionAwaiter.java:104)
+	at org.awaitility.core.CallableCondition.await(CallableCondition.java:79)
+	at org.awaitility.core.CallableCondition.await(CallableCondition.java:27)
+	at org.awaitility.core.ConditionFactory.until(ConditionFactory.java:809)
+	at org.awaitility.core.ConditionFactory.until(ConditionFactory.java:785)
+	at org.mule.tooling.runtime.controller.MuleController.start(MuleController.java:134)
+	... 4 more
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:13.776
+!MESSAGE Number of server definitions: 1
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:15.013
+!MESSAGE Instance C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-hjzkxzqx was not deleted
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:15.018
+!MESSAGE Creating tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:15.020
+!MESSAGE Copying mule instance as tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:44.555
+!MESSAGE Tooling path: C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-fyuhkwuo
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:44.560
+!MESSAGE Tooling version: 4.1.4
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:44.561
+!MESSAGE Starting tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:33:44.561
+!MESSAGE Tooling startup timeout: 90s
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-16 10:34:49.465
+!MESSAGE Tooling up and running
+
+!ENTRY org.eclipse.ui 4 0 2019-08-16 10:35:07.410
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1361)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.allMatch(ReferencePipeline.java:454)
+	at org.mule.tooling.ui.widgets.errors.ErrorManager.areAll(ErrorManager.java:117)
+	at org.mule.tooling.ui.dfl.contribution.editor.action.errors.WeaveErrorDisplay.getErrorDisplayImage(WeaveErrorDisplay.java:21)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay.onIssues(ErrorDisplay.java:79)
+	at org.mule.tooling.ui.widgets.errors.ErrorDisplay$2.run(ErrorDisplay.java:54)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-16 10:59:32.559
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-16 11:45:32.976
+!MESSAGE  *** 9279 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-20 08:52:33.667
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\yaml\snakeyaml\1.15\snakeyaml-1.15.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SESSION 2019-08-20 10:57:50.272 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_211
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-08-20 10:58:03.959
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 10:58:20.387
+!MESSAGE Using extension model cache located at: C:\Users\HP\AnypointStudio\studio-workspace\.mule\plugins-tmp\repository
+
+!ENTRY org.mule.tooling.ui.contribution.munit 1 1 2019-08-20 10:58:27.949
+!MESSAGE Creating MUnit temporary folder in C:\Users\HP\AppData\Local\Temp\munit-temp-dir
+
+!ENTRY org.mule.tooling.analytics 1 0 2019-08-20 11:00:11.587
+!MESSAGE Analytics starts successfully
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:00:11.696
+!MESSAGE Number of server definitions: 1
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:00:11.728
+!MESSAGE Metadata was not read from C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-hjzkxzqx
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-20 11:00:28.501
+!MESSAGE Unexpected error loading contribution from: elasticsearch-connector-1.0.0-mule-plugin.jar
+!STACK 0
+java.lang.RuntimeException: java.lang.ClassNotFoundException: org.mule.tooling.ui.modules.core.metadata.BuildMetadataActionHandler cannot be found by org.mule.tooling.ui.modules.core_7.3.2.201902012049
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.ChildControllerAttributeCreator.create(ChildControllerAttributeCreator.java:21)
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.AttributeReader.parseAttr(AttributeReader.java:456)
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.AttributeReader.readAttrs(AttributeReader.java:416)
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.AttributeReader.parseAttributes(AttributeReader.java:410)
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.AttributeReader.readAttributes(AttributeReader.java:365)
+	at org.mule.tooling.ui.modules.core.widgets.meta.AbstractContributionHandler.loadCommonProperties(AbstractContributionHandler.java:232)
+	at org.mule.tooling.ui.modules.core.widgets.meta.AbstractContributionHandler.handleElement(AbstractContributionHandler.java:387)
+	at org.mule.tooling.core.module.MuleModule.initElements(MuleModule.java:704)
+	at org.mule.tooling.core.module.MuleModule.initialize(MuleModule.java:692)
+	at org.mule.tooling.extension.api.BaseModuleHandler.buildModule(BaseModuleHandler.java:48)
+	at org.mule.tooling.extension.api.SingleExtensionModuleHandler.<init>(SingleExtensionModuleHandler.java:85)
+	at org.mule.tooling.extension.api.SingleExtensionModuleHandler.create(SingleExtensionModuleHandler.java:194)
+	at org.mule.tooling.extension.api.ModuleHandlerFactory.createHandlerFor(ModuleHandlerFactory.java:32)
+	at org.mule.tooling.core.module.ModuleContributionManager.lambda$6(ModuleContributionManager.java:342)
+	at org.mule.tooling.core.module.internal.ModuleHandlerCache.lambda$1(ModuleHandlerCache.java:31)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
+	at org.mule.tooling.core.module.internal.ModuleHandlerCache.computeIfAbsent(ModuleHandlerCache.java:30)
+	at org.mule.tooling.core.module.ModuleContributionManager.getExternalModule(ModuleContributionManager.java:341)
+	at org.mule.tooling.core.module.internal.runner.DownloadTask.doRun(DownloadTask.java:100)
+	at org.mule.tooling.core.module.internal.runner.Task.run(Task.java:65)
+	at org.mule.tooling.core.module.internal.runner.DownloadTask.run(DownloadTask.java:1)
+	at org.mule.tooling.core.module.internal.runner.SingleDownloadTask.run(SingleDownloadTask.java:1)
+	at org.mule.tooling.core.module.internal.runner.ArtifactResolvingRunner$ArtifactJob.run(ArtifactResolvingRunner.java:212)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.lang.ClassNotFoundException: org.mule.tooling.ui.modules.core.metadata.BuildMetadataActionHandler cannot be found by org.mule.tooling.ui.modules.core_7.3.2.201902012049
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:484)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:395)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:387)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:150)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.mule.tooling.ui.modules.core.widgets.meta.creators.ChildControllerAttributeCreator.create(ChildControllerAttributeCreator.java:19)
+	... 23 more
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:01:01.332
+!MESSAGE Creating tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:01:01.332
+!MESSAGE Copying mule instance as tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:01:14.316
+!MESSAGE Tooling workspace is C:\Users\HP\AnypointStudio\studio-workspace\.tooling-apps-cache
+
+!ENTRY org.eclipse.jface 2 0 2019-08-20 11:01:19.508
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-20 11:01:19.508
+!MESSAGE A conflict occurred for CTRL+SHIFT+X:
+Binding(CTRL+SHIFT+X,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.upperCase,To Upper Case,
+		Changes the selection to upper case,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@59de440b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+Binding(CTRL+SHIFT+X,
+	ParameterizedCommand(Command(org.mule.tooling.runtime.muleLaunchShortcut.run,Run Mule Application,
+		Run Mule Application,
+		Category(org.mule.tooling.runtime.ui.category,Runtime Category,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@74fc87d1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-20 11:01:19.508
+!MESSAGE A conflict occurred for CTRL+SHIFT+F:
+Binding(CTRL+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.format,Format,
+		Format the selected text,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2428eadb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+Binding(CTRL+SHIFT+F,
+	ParameterizedCommand(Command(org.mule.tooling.ui.openFlow,Open Flow,
+		Search For Flows in the current workspace,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5f56d7bd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2019-08-20 11:01:25.838
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-20 11:01:25.838
+!MESSAGE A conflict occurred for F2:
+Binding(F2,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2b1cf779,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F2,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.showInformation,Show Tooltip Description,
+		Displays information for the current caret location in a focused hover,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6f0a9d4f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2019-08-20 11:01:32.773
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-20 11:01:32.773
+!MESSAGE A conflict occurred for CTRL+F:
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findReplace,Find and Replace,
+		Find and replace text,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b61c70e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.mule.tooling.ui.dfl.contribution.commands.searchCommand,Find/Replace,
+		Find/Replace,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7a2daa29,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+Binding(CTRL+F,
+	ParameterizedCommand(Command(org.mule.tooling.commands.focusSearchCommand,Focus Search Command,
+		Focus Search in Palette,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3e9f0660,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-20 11:02:21.428
+!MESSAGE  *** 60108 EmbeddedMavenRunner [configuration=DefaultMavenRunnerConfiguration [externalInstallation=false, mavenInstallationHome=null, mavenOpts=]]
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:02:30.647
+!MESSAGE Tooling path: C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-wlyvulk2
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:02:30.662
+!MESSAGE Tooling version: 4.1.4
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:02:30.662
+!MESSAGE Starting tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:02:30.662
+!MESSAGE Tooling startup timeout: 90s
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-20 11:03:03.828
+!MESSAGE Tooling up and running
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-21 10:17:18.525
+!MESSAGE  *** 18310 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-21 10:40:15.292
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:48:45.023
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:137 is pointing to Insert which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:48:47.931
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:137 is pointing to Insert which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:48:47.952
+!MESSAGE Error while resolving component datasense
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:137 is pointing to Insert which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveComponentDataSense(DefaultDataSenseService.java:167)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveComponentDataSense(DefaultDataSenseService.java:118)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:284)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:52:14.637
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:165 is pointing to UpdateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:52:16.566
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:165 is pointing to UpdateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 10:52:16.595
+!MESSAGE Error while resolving component datasense
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:165 is pointing to UpdateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveComponentDataSense(DefaultDataSenseService.java:167)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveComponentDataSense(DefaultDataSenseService.java:118)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:284)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-21 10:54:32.420
+!MESSAGE  *** 13991 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-21 11:35:10.395
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-21 11:41:05.265
+!MESSAGE  *** 8708 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.eclipse.ui 4 0 2019-08-21 13:12:30.296
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: org.eclipse.core.commands.ExecutionException: While executing the action, an exception occurred
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:305)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:239)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:132)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:152)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:494)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:487)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:210)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.executeCommand(KeyBindingDispatcher.java:287)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.press(KeyBindingDispatcher.java:527)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.processKeyEvent(KeyBindingDispatcher.java:577)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.filterKeySequenceBindings(KeyBindingDispatcher.java:385)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.access$0(KeyBindingDispatcher.java:331)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher$KeyDownFilter.handleEvent(KeyBindingDispatcher.java:88)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:86)
+	at org.eclipse.swt.widgets.Display.filterEvent(Display.java:1271)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1078)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1103)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1088)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1130)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1126)
+	at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1547)
+	at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4962)
+	at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:364)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4843)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:359)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5178)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2560)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3815)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+Caused by: org.eclipse.core.commands.ExecutionException: While executing the action, an exception occurred
+	at org.eclipse.jface.commands.ActionHandler.execute(ActionHandler.java:123)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:92)
+	at sun.reflect.GeneratedMethodAccessor204.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 51 more
+Caused by: java.lang.IllegalStateException: Unlinked state does not allow delete actions
+	at org.mule.tooling.core.dom.w3c.impl.state.UnlinkedStateW3C.handleDeleteRequest(UnlinkedStateW3C.java:90)
+	at org.mule.tooling.core.dom.w3c.impl.ElementWrapperW3C.removeChild(ElementWrapperW3C.java:258)
+	at org.mule.tooling.model.messageflow.decorator.CompartmentLaneDecorator.removeEntity(CompartmentLaneDecorator.java:188)
+	at org.mule.tooling.model.messageflow.decorator.CompartmentLaneDecorator.removeEntity(CompartmentLaneDecorator.java:227)
+	at org.mule.tooling.messageflow.command.NodeCreateCommand.undo(NodeCreateCommand.java:84)
+	at org.eclipse.gef.commands.CompoundCommand.undo(CompoundCommand.java:191)
+	at org.eclipse.gef.commands.CommandStack.undo(CommandStack.java:431)
+	at org.eclipse.gef.ui.actions.UndoAction.run(UndoAction.java:94)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:473)
+	at org.eclipse.jface.commands.ActionHandler.execute(ActionHandler.java:118)
+	... 56 more
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-21 14:18:34.533
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-21 14:19:25.492
+!MESSAGE  *** 8681 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.eclipse.jface 2 0 2019-08-21 14:25:07.452
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-08-21 14:25:07.452
+!MESSAGE A conflict occurred for CTRL+SHIFT+I:
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.commands.Inspect,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@27316ce5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.mule.tooling.debugger.commands.openevaluatepopup,(Mule) Open Evaluate Popup,
+		,
+		Category(org.mule.tooling.debugger.commands.category,org.mule.tooling.debugger.commands.category,Category for debugger commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4b1ba692,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.openEvaluatePopup,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.mule.tooling.ui.dfl.contribution.commands.inputSearchCommand,Input Search,
+		Input Search,
+		Category(org.mule.tooling.ui.commandcategory,org.mule.tooling.ui.commandcategory,Category for menu commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7a2392d7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.mule.tooling.contexts.mulePropertiesEditor,,,system)
+
+!ENTRY org.eclipse.ui 4 0 2019-08-21 14:26:49.406
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909)
+	at java.util.ArrayList$Itr.next(ArrayList.java:859)
+	at org.mule.tooling.ui.dfl.contribution.customeditor.DataWeaveExpressionEditor$CustomErrorManagerListener.lambda$0(DataWeaveExpressionEditor.java:363)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:680)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:594)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:151)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1472)
+
+!ENTRY org.mule.tooling.maven 1 0 2019-08-21 14:27:21.548
+!MESSAGE  *** 7907 EmbeddedMavenRunner [configuration=MavenPreferences [isDontWarnAgainIfNoInstallationFoundChecked()=false, isGlobalMavenSupportEnabled()=true, getMavenInstallationHome()=, getMavenOpts()=, getDefaultGroupId()=com.mycompany, getBaseCommandline()=mvn clean package -DskipMunitTests, isDisplayRuntimeVersionWarning()=true, isExternalInstallation()=false]]
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 15:06:23.075
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:146 is pointing to updateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 15:06:25.544
+!MESSAGE Error while resolving metadata propagation
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:146 is pointing to updateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveDataSense(DefaultDataSenseService.java:134)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveDataSense(DefaultDataSenseService.java:109)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:275)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 4 0 2019-08-21 15:06:25.568
+!MESSAGE Error while resolving component datasense
+!STACK 0
+org.mule.tooling.client.api.exception.ToolingException: Error while creating application model
+org.mule.runtime.api.exception.MuleRuntimeException: flow-ref at mulecasestudy.xml:146 is pointing to updateEmployee which does not exist
+
+	at org.mule.tooling.client.internal.DefaultApplicationModelFactory.createApplicationModel(DefaultApplicationModelFactory.java:61)
+	at org.mule.tooling.client.internal.application.DefaultApplication.lambda$newToolingApplicationModelLazyValue$7(DefaultApplication.java:131)
+	at org.mule.runtime.api.util.LazyValue.get(LazyValue.java:66)
+	at org.mule.tooling.client.internal.application.AbstractArtifact.getApplicationModel(AbstractArtifact.java:183)
+	at org.mule.tooling.client.internal.datasense.DataSenseArtifact.getToolingApplicationModel(DataSenseArtifact.java:74)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.internalResolveComponentDataSense(DefaultDataSenseService.java:167)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.resolveComponentDataSense(DefaultDataSenseService.java:118)
+	at org.mule.tooling.client.internal.DefaultDataSenseService.invokeMethod(DefaultDataSenseService.java:284)
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mule.tooling.client.bootstrap.internal.reflection.Dispatcher$ToolingCallable.call(Dispatcher.java:232)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:03.513
+!MESSAGE Number of server definitions: 1
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:10.810
+!MESSAGE Creating tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:10.822
+!MESSAGE Copying mule instance as tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:41.658
+!MESSAGE Tooling path: C:\Muelsoft\AnypointStudio\AnypointStudio\configuration\org.eclipse.osgi\424\data\.runtimes\tooling-gh8fhrgr
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:41.663
+!MESSAGE Tooling version: 4.1.4
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:41.667
+!MESSAGE Starting tooling instance
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:08:41.668
+!MESSAGE Tooling startup timeout: 90s
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-21 15:09:07.319
+!MESSAGE Tooling up and running
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-21 15:54:30.574
+!MESSAGE Cannot delete C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps
+!STACK 0
+java.io.IOException: Unable to delete file: C:\Muelsoft\AnypointStudio\AnypointStudio\plugins\org.mule.tooling.server.4.1.4.ee_7.3.2.201902011858\mule\apps\mulecasestudy\repository\org\mule\modules\mule-apikit-module\1.1.9\mule-apikit-module-1.1.9-mule-plugin.jar
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1643)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.apache.commons.io.FileUtils.deleteDirectory(FileUtils.java:1200)
+	at org.apache.commons.io.FileUtils.forceDelete(FileUtils.java:1634)
+	at org.apache.commons.io.FileUtils.cleanDirectory(FileUtils.java:1268)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.clean(MuleControllerUtils.java:347)
+	at org.mule.tooling.runtime.controller.MuleControllerUtils.cleanAppsFolder(MuleControllerUtils.java:309)
+	at org.mule.tooling.runtime.controller.MuleController.stop(MuleController.java:206)
+	at org.mule.tooling.runtime.launch.MuleRuntimeProcessLaunchDelegate.launchesTerminated(MuleRuntimeProcessLaunchDelegate.java:1033)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.run(LaunchManager.java:314)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.internal.core.LaunchManager$LaunchesNotifier.notify(LaunchManager.java:266)
+	at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:1054)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:479)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:666)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1155)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1189)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:442)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.mule.tooling.core 2 0 2019-08-22 10:38:46.136
+!MESSAGE imageFigure was null (NodeFigure#updateImageFigure)
+
+!ENTRY org.mule.tooling.ui.contribution.munit 1 1 2019-08-22 10:39:16.021
+!MESSAGE Deleting MUnit temporary folder in C:\Users\HP\AppData\Local\Temp\munit-temp-dir
+
+!ENTRY org.mule.tooling.analytics 1 0 2019-08-22 10:39:16.164
+!MESSAGE Analytics shutdown successfully
+!SESSION 2019-08-22 10:39:07.891 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_211
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.mule.tooling.core 1 0 2019-08-22 10:40:00.141
+!MESSAGE Using extension model cache located at: C:\Users\HP\AnypointStudio\studio-workspace\.mule\plugins-tmp\repository
+
+!ENTRY org.mule.tooling.ui.contribution.munit 1 1 2019-08-22 10:40:09.399
+!MESSAGE Creating MUnit temporary folder in C:\Users\HP\AppData\Local\Temp\munit-temp-dir

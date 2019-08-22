@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="employeeData" format="csv">
+      <types:shape format="weave" example="examples/EmployeeExampleData.csv"><![CDATA[%dw 2.0
+type employeeData = Array<{|
+  first_name: String, 
+  last_name: String, 
+  company_name: String, 
+  address: String, 
+  city: String, 
+  county: String, 
+  state: String, 
+  zip: String, 
+  phone1: String, 
+  phone2: String, 
+  email: String, 
+  web: String
+|}> {"MetadataFormat": "csv"}
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="true"/>
+        <types:property name="isQuotedString" value="false"/>
+        <types:property name="separator" value=","/>
+      </types:properties>
+    </types:type>
+    <types:type name="employeeXmlExample" format="xml">
+      <types:example format="xml" element="Employees" location="examples/EmployeeExampleXML.xml"/>
+    </types:type>
+    <types:type name="insertOne" format="java">
+      <types:shape format="raml"><![CDATA[#%RAML 1.0 DataType
+type: string]]></types:shape>
+    </types:type>
+    <types:type name="oneInsert" format="json">
+      <types:shape format="weave" example="examples/EmployeeExampleJSONone.json"><![CDATA[%dw 2.0
+type oneInsert = {|
+  eid: String, 
+  first_name: String, 
+  last_name: String, 
+  company_name: String, 
+  address: String, 
+  city: String, 
+  county: String, 
+  state: String, 
+  zip: Number {"typeId": "int"}, 
+  phone1: String, 
+  phone2: String, 
+  email: String, 
+  web: String
+|} {"MetadataFormat": "json",
+"example": "{\"eid\":\"1\",\"first_name\":\"James\",\"last_name\":\"Butt\",\"company_name\":\"Benton, John B Jr\",\"address\":\"6649 N Blue Gum St\",\"city\":\"New Orleans\",\"county\":\"Orleans\",\"state\":\"LA\",\"zip\":70116,\"phone1\":\"504-621-8927\",\"phone2\":\"504-845-1427\",\"email\":\"jbutt@gmail.com\",\"web\":\"http:\/\/www.bentonjohnbjr.com\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="employeeJSONexample" format="json">
+      <types:shape format="weave" example="examples/EmployeeExampleJSON-1.json"><![CDATA[%dw 2.0
+type employeeJSONexample = Array<{|
+  eid: String, 
+  first_name: String, 
+  last_name: String, 
+  company_name: String, 
+  address: String, 
+  city: String, 
+  county: String, 
+  state: String, 
+  zip: Number {"typeId": "int"}, 
+  phone1: String, 
+  phone2: String, 
+  email: String, 
+  web: String
+|}> {"MetadataFormat": "json",
+"example": "[{\"eid\":\"1\",\"first_name\":\"James\",\"last_name\":\"Butt\",\"company_name\":\"Benton, John B Jr\",\"address\":\"6649 N Blue Gum St\",\"city\":\"New Orleans\",\"county\":\"Orleans\",\"state\":\"LA\",\"zip\":70116,\"phone1\":\"504-621-8927\",\"phone2\":\"504-845-1427\",\"email\":\"jbutt@gmail.com\",\"web\":\"http:\/\/www.bentonjohnbjr.com\"},{\"eid\":\"2\",\"first_name\":\"Josephine\",\"last_name\":\"Darakjy\",\"company_name\":\"Chanay, Jeffrey A Esq\",\"address\":\"4 B Blue Ridge Blvd\",\"city\":\"Brighton\",\"county\":\"Livingston\",\"state\":\"MI\",\"zip\":48116,\"phone1\":\"810-292-9388\",\"phone2\":\"810-374-9840\",\"email\":\"josephine_darakjy@darakjy.org\",\"web\":\"http:\/\/www.chanayjeffreyaesq.com\"},{\"eid\":\"3\",\"first_name\":\"Art\",\"last_name\":\"Venere\",\"company_name\":\"Chemel, James L Cpa\",\"address\":\"8 W Cerritos Ave #54\",\"city\":\"Bridgeport\",\"county\":\"Gloucester\",\"state\":\"NJ\",\"zip\":8014,\"phone1\":\"856-636-8749\",\"phone2\":\"856-264-4130\",\"email\":\"art@venere.org\",\"web\":\"http:\/\/www.chemeljameslcpa.com\"},{\"eid\":\"4\",\"first_name\":\"Lenna\",\"last_name\":\"Paprocki\",\"company_name\":\"Feltz Printing Service\",\"address\":\"639 Main St\",\"city\":\"Anchorage\",\"county\":\"Anchorage\",\"state\":\"AK\",\"zip\":99501,\"phone1\":\"907-385-4412\",\"phone2\":\"907-921-2010\",\"email\":\"lpaprocki@hotmail.com\",\"web\":\"http:\/\/www.feltzprintingservice.com\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#f9ca2c36-315a-4b58-9d3a-3366f41acf1e">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="employeeData"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#e3fbdf02-bde5-4b55-a181-f569c1baf176">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="employeeData"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="employeeXmlExample"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#a69117be-4449-4fb9-8869-b56a4daf6b57">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="employeeJSONexample"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+    <types:operation-declaration>
+      <types:inputs>
+        <types:parameter name="inputParameters" type="employeeJSONexample"/>
+      </types:inputs>
+    </types:operation-declaration>
+  </types:enrichment>
+</types:mule>

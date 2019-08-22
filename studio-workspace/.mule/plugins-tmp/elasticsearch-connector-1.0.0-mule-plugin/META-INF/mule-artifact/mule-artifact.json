@@ -1,0 +1,50 @@
+{
+  "extensionModelLoaderDescriptor": {
+    "id": "java",
+    "attributes": {
+      "type": "org.mule.extension.elastic.internal.extension.ElasticsearchExtension",
+      "version": "1.0.0"
+    }
+  },
+  "license": {
+    "allowsEvaluation": true
+  },
+  "name": "Elasticsearch",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "privilegedExportedPackages": [],
+      "privilegedArtifactIds": [],
+      "exportedPackages": [
+        "org.elasticsearch.action.admin.indices.open",
+        "org.elasticsearch.action.admin.indices.create",
+        "org.mule.extension.elastic.api",
+        "org.elasticsearch.cluster",
+        "org.elasticsearch.index",
+        "org.elasticsearch.action.index",
+        "org.elasticsearch.action.update",
+        "org.elasticsearch.client",
+        "org.elasticsearch.action.search",
+        "org.apache.http",
+        "org.elasticsearch.search.builder",
+        "org.elasticsearch.action.admin.indices.delete",
+        "org.elasticsearch.action.support",
+        "org.elasticsearch",
+        "org.elasticsearch.search.profile",
+        "org.elasticsearch.action",
+        "org.elasticsearch.action.main",
+        "org.mule.extension.elastic.internal.querytype",
+        "org.elasticsearch.action.admin.indices.close",
+        "org.elasticsearch.action.delete",
+        "org.elasticsearch.common.unit"
+      ],
+      "exportedResources": []
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  },
+  "minMuleVersion": "4.1.1"
+}

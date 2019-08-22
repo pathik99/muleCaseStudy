@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="postFlight" doc:id="0475664d-a9ed-4cde-8db6-e75f68b2f8e4" >
+		<set-payload value='#[{
+	"firstname": "max",
+	"lastname": "mule"
+}]' doc:name="Set Payload" doc:id="0f278b8c-8cb2-454d-a082-bea23a082b22" />
+		<ee:transform doc:name="Transform Message" doc:id="a86a1a97-4502-4a74-988c-c64d56d083b2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+fun myTestFun(lastname:String) =
+if(lastname == 'mule1')
+	'got it second record'
+else
+	'not got it'
+
+---
+
+using(uName = payload.firstname){
+	
+users: {(payload map (object, index) -> {
+	user: {
+	num: index as Number,
+	myFName: object.firstname,
+	doubleIndex: index * 10,
+	testing: myTestFun(object.lastname),
+	Date: now() as Date {format: "yyyy/MM/dd"},
+	Time: now() as Time {format: "hh:mm"},
+	usingVar: uName
+	}
+	
+  }
+)}
+
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="5e6fb24e-d619-4e9c-9ac6-576f3ef27a8e" />
+	</flow>
+</mule>
